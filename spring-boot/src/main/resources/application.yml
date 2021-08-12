@@ -25,3 +25,11 @@ langyastudio:
 server:
   # 服务端口
   port: ${APP_PORT:8888}
+
+#actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        #info, health, beans, env, metrics
+        include: info, health
