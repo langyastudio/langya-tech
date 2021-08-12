@@ -21,3 +21,7 @@ langyastudio:
       allow-empty: false
       # 允许的文件类型:
       allow-types: jpg, png, gif
+
+server:
+  # 服务端口
+  port: ${APP_PORT:8888}

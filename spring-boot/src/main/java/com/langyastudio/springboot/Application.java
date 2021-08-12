@@ -2,13 +2,11 @@ package com.langyastudio.springboot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration;
 
 /**
  * 应用程序入口
  */
-@SpringBootApplication(scanBasePackages = {"com.langyastudio.springboot"},
-exclude = SpringApplicationAdminJmxAutoConfiguration.class)
+@SpringBootApplication(scanBasePackages = {"com.langyastudio.springboot"})
 public class Application
 {
     public static void main(String[] args)
