@@ -24,12 +24,24 @@ langyastudio:
 
 server:
   # 服务端口
-  port: ${APP_PORT:8888}
+  port: ${APP_PORT:8080}
 
 #actuator
+info:
+  name: spring boot app
+  version: 1.0.1
+  maintainer: langyastudio
 management:
+  endpoint:
+    health:
+      show-details: always
   endpoints:
     web:
       exposure:
-        #info, health, beans, env, metrics
-        include: info, health
+        #health, info
+        include: health, info, beans, env, conditions, httptrace, configprops, threaddump, loggers, mappings, metrics
+
+      #修改访问地址
+      #base-path: /monitor
+      #path-mapping:
+      #  health: check-health
