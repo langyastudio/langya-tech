@@ -28,6 +28,16 @@ server:
   # 服务端口
   port: ${APP_PORT:8080}
 
+spring:
+  task:
+    scheduling:
+      pool:
+        size: 5
+      shutdown:
+        #关闭应用程序时，是否等待任务执行完毕
+        await-termination: true
+        await-termination-period: 60000
+
 #actuator
 info:
   name: spring boot app
