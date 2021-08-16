@@ -1,4 +1,4 @@
-package com.langyastudio.springboot.common.middleware;
+package com.langyastudio.springboot.common.middleware.monitor;
 
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;

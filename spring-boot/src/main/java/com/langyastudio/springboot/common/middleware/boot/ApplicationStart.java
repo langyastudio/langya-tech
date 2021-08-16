@@ -1,4 +1,4 @@
-package com.langyastudio.springboot.common.middleware;
+package com.langyastudio.springboot.common.middleware.boot;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

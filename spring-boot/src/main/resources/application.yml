@@ -1,4 +1,6 @@
 langyastudio:
+  task:
+    fixedDelaySchedule: 60000
   disk:
     local:
       root: /mnt/volume/edu/pms/
