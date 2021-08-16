@@ -33,9 +33,9 @@ public class SchedulingService
     /**
      * cron 表达式
      */
-    @Scheduled(cron = "0 * * * * *")
+    @Scheduled(cron = "*/30 * * * * *")
     public void  cronchedule()
     {
-        log.info("每分钟执行cron...");
+        log.info("每30秒执行cron...");
     }
 }
