@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Log4j2
 @Component
-public class SchedulingService
+public class SchedulingTask
 {
     @Scheduled(fixedRate = 60000)
     public void  fixedRateSchedule()
