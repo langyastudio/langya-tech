@@ -34,7 +34,6 @@
 **spring boot**
 
 - [SSH 框架已经过时了](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484277&idx=1&sn=11c270bbcfa7b6f9e23ef0b0db0b1ae6&chksm=c03a51d4f74dd8c2dd44bde08b6e59ebc22ad9d416fd226ec23f921f29e5d8a2ea075d46bc79&scene=21#wechat_redirect)
-
 - [spring boot 零基础快速入门](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484614&idx=2&sn=faa04c2d2d0ec8b5a5130f52ce4128fa&chksm=c03a5667f74ddf71043b67341962d283e54d45d682f630064312a29e8bc1fe48e05257f72b2f&scene=21#wechat_redirect)
 - [spring boot restful web应用](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484615&idx=1&sn=db2294154cd0a9b249a0124ad1d0ffc8&chksm=c03a5666f74ddf70c7c8700514068c34d053502a56d87d7b5a0bc3911392ef24f644c9d65754&scene=21#wechat_redirect)
 - [spring boot properties配置文件详解](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484692&idx=1&sn=d4133a364c5121e51844258499be7b10&chksm=c03a57b5f74ddea350b4fcc5f0c52cdc1211cff7941b6a1634a45c2a6b099804a5c81689fa02&scene=21#wechat_redirect)
@@ -159,9 +158,7 @@
 ### 前端
 
 - [Android IOS浏览器不自动播放视频](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484017&idx=1&sn=b4e030a618cb0bd7184a452ef75d1440&chksm=c03a50d0f74dd9c6bc2603e66ad62db7597b1d0061234958c61bc59ef9a040d755bc8aea6d6a&scene=21#wechat_redirect)
-
 - [微信分享链接如何定制缩略图和标题](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484012&idx=1&sn=8ed50e1f525339e68963ff4627384bba&chksm=c03a50cdf74dd9dbd2820bd2c8de8b83b74f3e7aa9ba3dde6fe04d97c88510529bd2c865118a&scene=21#wechat_redirect)
-
 - [为什么 Chrome 80 Cookie 跨域失败？这篇文章告诉你答案](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247483915&idx=1&sn=05390fa4e92e2b3e94633add5797c90c&chksm=c03a50aaf74dd9bcbeba3dad39c58794995a9cfd6d0121768a418ecc9649deaa99cfc36f97d1&scene=21#wechat_redirect)
 
   
@@ -171,17 +168,11 @@
 **知识点**
 
 - [PHP Supported Versions 支持的版本](https://langyastudio.blog.csdn.net/article/details/88724663)
-
 - [PHP this parent static self 关键字](https://langyastudio.blog.csdn.net/article/details/100573161)
-
 - [PHP 密码哈希password_hash的使用方法](https://langyastudio.blog.csdn.net/article/details/85079659)
-
 - [分分钟解决 PHP 上传文件大小限制的问题](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484279&idx=1&sn=1f44579249f12f09f04f00881d6070a0&chksm=c03a51d6f74dd8c00b794ed9db932c42bc0368c2d51d7153102e7f595cd9a374efb25ff85a5a&scene=21#wechat_redirect)
-
 - [PHP 获取 IP 地址所在的地理位置信息/城市](https://langyastudio.blog.csdn.net/article/details/80245487)
-
 - [PHP 获取内存/CPU/负载/网络带宽数据包/磁盘IO读写等监控指标](https://langyastudio.blog.csdn.net/article/details/112325035)
-
 - [PHP 实现敏感词过滤（附敏感词库）](https://langyastudio.blog.csdn.net/article/details/85072625)
 
   
@@ -189,25 +180,13 @@
 **扩展**
 
 - [PHP 原来单点登录这么简单](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484278&idx=1&sn=0562afdd3a55ab2673d6c3a3e29827be&chksm=c03a51d7f74dd8c12e25687df268b56dd28973ce27454b87cccbc14308e3400b77349313fa4b&scene=21#wechat_redirect)
-
 - [PHP List数据集/数组转换成树状结构Tree](https://langyastudio.blog.csdn.net/article/details/83862452)
-
 - [PHP ajax请求返回数据后，如何在后台继续执行代码](http://mp.weixin.qq.com/s?__biz=Mzg5MjYzNTA4Ng==&mid=2247484281&idx=1&sn=889c43871e10fa1ea2b13153d2e4df20&chksm=c03a51d8f74dd8cef230842dfcaeb8ec4d1f63ffa5e9130ba3e15c7be5f5a87cf4fada063ae3&scene=21#wechat_redirect)
-
 - [PHP扩展 opcache 操作码优化加速组件的配置](https://langyastudio.blog.csdn.net/article/details/53219266)
-
 - [PHP 源码加密解密工具php-beast](https://langyastudio.blog.csdn.net/article/details/53403862)
-
 - [PHP 性能优化简述](https://langyastudio.blog.csdn.net/article/details/78332767)
-
 - [soar-php SQL语句优化与重写的自动化工具](https://langyastudio.blog.csdn.net/article/details/109851376)
-
 - [PHP Yaconf 一个高性能的配置管理扩展（PHP7）](https://langyastudio.blog.csdn.net/article/details/79641936)
-
-  
-
-### C++
-
 
 
 ### C++
@@ -223,18 +202,12 @@
 
 ### C#
 
-[**C#调用C++ 基于P/Invoke实现**](https://github.com/langyastudio/pinvoke)
-
-[**C#调用C++ 基于CLI实现**](https://github.com/langyastudio/cli)
-
+- [**C#调用C++ 基于P/Invoke实现**](https://github.com/langyastudio/pinvoke)
+- [**C#调用C++ 基于CLI实现**](https://github.com/langyastudio/cli)
 - [U盘插拔监控](https://langyastudio.blog.csdn.net/article/details/43203739)
-
 - [垃圾回收机制GC详解](https://langyastudio.blog.csdn.net/article/details/38581101)
-
 - [C# WinForm 用户自定义控件闪烁的问题](https://langyastudio.blog.csdn.net/article/details/45251711)
-
 - [C# 注册自定义文件类型](https://langyastudio.blog.csdn.net/article/details/44815751)
-
 - [C# UrlEncode 与 Java、PHP 不一致](https://langyastudio.blog.csdn.net/article/details/86376803)
 
   
@@ -390,13 +363,9 @@
 **Docker**
 
 - [docker 安装/离线安装](https://langyastudio.blog.csdn.net/article/details/101353072)
-
 - [docker 导入和导出镜像 离线安装镜像](https://langyastudio.blog.csdn.net/article/details/101363079)
-
 - [docker 容器常用操作详解](https://langyastudio.blog.csdn.net/article/details/111478658)
-
 - [docker 同主机/host 容器间网络互联互通](https://langyastudio.blog.csdn.net/article/details/101360432)
-
 - [docker 配置与调试](https://langyastudio.blog.csdn.net/article/details/111478865)
 
   
