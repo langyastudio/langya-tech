@@ -29,6 +29,28 @@ server:
   port: ${APP_PORT:8080}
 
 spring:
+  datasource:
+    url: jdbc:mysql://192.168.123.22:3306/edu_account
+    username: root
+    password: Hacfin_Mysql8
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      initial-size: 10
+      max-active: 20
+      min-idle: 1
+      max-wait: 6000
+      #pool-prepared-statements:
+      #max-pool-prepared-statement-per-connection-size:
+      validation-query: SELECT 1
+      #validation-query-timeout:
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      #max-evictable-idle-time-millis:
+      filters: wall
+
   task:
     scheduling:
       pool:
@@ -37,6 +59,23 @@ spring:
         #关闭应用程序时，是否等待任务执行完毕
         await-termination: true
         await-termination-period: 60000
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  mapper-locations:
+    classpath*:mapper/*.xml
+
+  configuration:
+    auto-mapping-behavior: partial
+    # 开启驼峰命名
+    map-underscore-to-camel-case: true
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+      # 表名前缀
+      table-prefix:
 
 #actuator
 info:
