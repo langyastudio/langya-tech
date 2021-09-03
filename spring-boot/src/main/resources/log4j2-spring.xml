@@ -43,6 +43,11 @@
     </Appenders>
 
     <Loggers>
+        <!-- 将业务dao接口填写进去,并用控制台输出即可 -->
+        <Logger name="com.langyastudio.springboot.mapper" level="DEBUG" additivity="false">
+            <appender-ref ref="console"/>
+        </Logger>
+
         <!--监控系统信息-->
         <!--若是additivity设为false，则子Logger只会在自己的appender里输出，而不会在父Logger的appender里输出。-->
         <Logger name="org.springframework" level="info" additivity="false">
