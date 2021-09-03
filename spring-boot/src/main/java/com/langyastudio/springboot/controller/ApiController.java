@@ -1,6 +1,9 @@
 package com.langyastudio.springboot.controller;
 
 import com.langyastudio.springboot.bean.dto.UserParam;
+import com.langyastudio.springboot.mapper.UmsUserMapper;
+import com.langyastudio.springboot.model.UmsUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,13 +16,16 @@ import java.util.Map;
 @RequestMapping("/api")
 public class ApiController
 {
+    @Autowired
+    UmsUserMapper umsUserMapper;
+
     //------------------------------------------------------------------------------------------------------------------
     // Get 请求
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/users")
-    public List<String> users(@RequestParam(value = "user_name") String userName )
+    public UmsUser users(@RequestParam(value = "user_name") String userName )
     {
-        return List.of("Apple", "Orange", "Banana", userName);
+        return umsUserMapper.selectByPrimaryKey(userName);
     }
 
     @GetMapping("/user/{user_name}")

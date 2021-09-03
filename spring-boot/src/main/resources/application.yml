@@ -77,6 +77,10 @@ mybatis-plus:
       # 表名前缀
       table-prefix:
 
+  configuration:
+    auto-mapping-behavior: partial
+    map-underscore-to-camel-case: true
+
 #actuator
 info:
   name: spring boot app
