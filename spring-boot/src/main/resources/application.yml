@@ -29,6 +29,9 @@ server:
   port: ${APP_PORT:8080}
 
 spring:
+  profiles:
+    active: dev
+
   datasource:
     url: jdbc:mysql://192.168.123.22:3306/edu_account
     username: root
@@ -50,6 +53,13 @@ spring:
       min-evictable-idle-time-millis: 300000
       #max-evictable-idle-time-millis:
       filters: wall
+
+  servlet:
+    # 开启文件上传
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+      enabled: true
 
   task:
     scheduling:
