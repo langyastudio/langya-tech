@@ -6,8 +6,11 @@ import com.langyastudio.springboot.common.exception.MyException;
 import com.langyastudio.springboot.mapper.UmsUserMapper;
 import com.langyastudio.springboot.model.UmsUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.Map;
 
 /**
@@ -15,6 +18,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api")
+@Validated
 public class ApiController
 {
     @Autowired
@@ -39,7 +43,8 @@ public class ApiController
     // Post 请求
     //------------------------------------------------------------------------------------------------------------------
     @PostMapping("/user/add")
-    public UserParam addUser(@RequestBody UserParam userParam)
+    public UserParam addUser(@Valid @RequestBody UserParam userParam,
+                             @Valid @RequestParam(value = "pwd") @Size(min = 6) String pwd)
     {
         return userParam;
     }
