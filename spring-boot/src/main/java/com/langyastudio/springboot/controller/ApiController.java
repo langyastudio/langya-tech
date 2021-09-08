@@ -1,7 +1,9 @@
 package com.langyastudio.springboot.controller;
 
 import com.langyastudio.springboot.bean.dto.UserParam;
+import com.langyastudio.springboot.common.anno.InValue;
 import com.langyastudio.springboot.common.data.EC;
+import com.langyastudio.springboot.common.data.validator.UpdateV;
 import com.langyastudio.springboot.common.exception.MyException;
 import com.langyastudio.springboot.mapper.UmsUserMapper;
 import com.langyastudio.springboot.model.UmsUser;
@@ -43,8 +45,9 @@ public class ApiController
     // Post 请求
     //------------------------------------------------------------------------------------------------------------------
     @PostMapping("/user/add")
-    public UserParam addUser(@Valid @RequestBody UserParam userParam,
-                             @Valid @RequestParam(value = "pwd") @Size(min = 6) String pwd)
+    public UserParam addUser(@Validated({UpdateV.class}) @RequestBody UserParam userParam,
+                             @Valid @RequestParam(value = "pwd") @Size(min = 6) String pwd,
+                             @Valid @RequestParam(value = "type") @InValue({"F", "L"}) String type)
     {
         return userParam;
     }

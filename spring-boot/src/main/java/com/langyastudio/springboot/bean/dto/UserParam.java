@@ -1,11 +1,10 @@
 package com.langyastudio.springboot.bean.dto;
 
+import com.langyastudio.springboot.common.data.validator.InsertV;
+import com.langyastudio.springboot.common.data.validator.UpdateV;
 import lombok.Data;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 /**
  * user 传入参数
@@ -13,6 +12,11 @@ import javax.validation.constraints.Size;
 @Data
 public class UserParam
 {
+    @Null(message = "新增时id必须为空", groups = {InsertV.class})
+    @NotNull(message = "更新时id不能为空", groups = {UpdateV.class})
+    @Positive
+    private Integer id;
+
     /**
      * 长度2-20
      * 不能为null
