@@ -8,6 +8,7 @@ import com.langyastudio.springboot.common.exception.MyException;
 import com.langyastudio.springboot.mapper.UmsUserMapper;
 import com.langyastudio.springboot.model.UmsUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +32,6 @@ public class ApiController
     // Get 请求
     //------------------------------------------------------------------------------------------------------------------
     @GetMapping("/users")
-    @Transactional
     public UmsUser users(@RequestParam(value = "user_name") String userName )
     {
         UmsUser umsUser = umsUserMapper.selectByPrimaryKey(userName);

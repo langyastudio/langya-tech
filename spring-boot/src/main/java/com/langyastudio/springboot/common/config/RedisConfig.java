@@ -76,7 +76,9 @@ public class RedisConfig extends CachingConfigurerSupport
                 SerializerFeature.WriteNullListAsEmpty,
                 SerializerFeature.WriteNullStringAsEmpty);
         fastJsonConfig.setCharset(StandardCharsets.UTF_8);
+
         fastJsonConfig.setFeatures(Feature.SupportAutoType);
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteClassName);
 
         //如果时间类型值为null，则返回空串
         //否则null类型的字段不返回!!!
@@ -130,7 +132,7 @@ public class RedisConfig extends CachingConfigurerSupport
 
         //进行过期时间配置
         //db缓存2小时
-        redisCacheConfigurationMap.put(_PREFIX + "db", this.getRedisCacheConfigurationWithTtl(7200));
+        redisCacheConfigurationMap.put("db", this.getRedisCacheConfigurationWithTtl(7200));
 
         return redisCacheConfigurationMap;
     }
@@ -153,7 +155,10 @@ public class RedisConfig extends CachingConfigurerSupport
                 // 设置value为json序列化
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(fastJsonRedisSerializer()))
                 // 不缓存空值
-                .disableCachingNullValues();
+                //.disableCachingNullValues()
+                // 忽略前缀
+                //.disableKeyPrefix()
+                 ;
 
         return config;
     }
@@ -161,6 +166,7 @@ public class RedisConfig extends CachingConfigurerSupport
     /**
      * 缓存的key是 包名+方法名+参数列表
      */
+    @Override
     @Bean
     public KeyGenerator keyGenerator()
     {
