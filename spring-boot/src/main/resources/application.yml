@@ -65,6 +65,25 @@ spring:
       #max-evictable-idle-time-millis:
       filters: wall
 
+  redis:
+    host: 192.168.123.22
+    port: 6379
+    password: Hacfin_Redis8
+    timeout: 6000ms
+    lettuce:
+      pool:
+        # 最大连接数
+        max-active: 8
+        # 最大阻塞等待时间(负数表示没限制)
+        max-wait: 10000ms
+        # 最大空闲
+        max-idle: 8
+        # 最小空闲
+        min-idle: 0
+      #cluster:       # 集群配置
+      #nodes: 127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384,127.0.0.1:6385,127.0.0.1:6386
+      #max-redirects: 2  # 最大重定向次数
+
   servlet:
     # 开启文件上传
     multipart:
