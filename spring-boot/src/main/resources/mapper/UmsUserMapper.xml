@@ -33,6 +33,15 @@
         <include refid="Base_Column_List"/>
         from ums_user
         where user_name = #{userName,jdbcType=VARCHAR}
+        and delete_time is null
+    </select>
+
+    <select id="selectByPrimaryKeyEx" parameterType="java.lang.String" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from ums_user
+        where user_name = #{userName,jdbcType=VARCHAR}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

@@ -35,6 +35,12 @@ public class ApiController
         return umsUserMapper.selectByPrimaryKey(userName);
     }
 
+    @GetMapping("/users_ex")
+    public UmsUser usersEx(@RequestParam(value = "user_name") String userName )
+    {
+        return umsUserMapper.selectByPrimaryKeyEx(userName);
+    }
+
     @GetMapping("/users/del")
     public int delUsers(@RequestParam(value = "user_name") String userName )
     {
