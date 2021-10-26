@@ -1,4 +1,4 @@
-package com.langyastudio.springboot.common.config;
+package com.langyastudio.springboot.config;
 
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -27,13 +27,15 @@ import java.util.Map;
 
 /**
  * redis配置类
+ *
+ * 配置序列化方式以及缓存管理器
  */
 @Configuration
 @EnableCaching
 @AutoConfigureAfter(RedisAutoConfiguration.class)
 public class RedisConfig extends CachingConfigurerSupport
 {
-    static final String _PREFIX = "langya:";
+    public final static String _PREFIX = "langya_";
 
     /**
      * redis template相关配置
@@ -53,17 +55,17 @@ public class RedisConfig extends CachingConfigurerSupport
         //使用StringRedisSerializer来序列化和反序列化redis的key值
         template.setKeySerializer(new StringRedisSerializer());
         // 值采用json序列化
-        template.setValueSerializer(this.fastJsonRedisSerializer());
+        template.setValueSerializer(this.fastJsonRedisSerializer(false));
 
         // 设置hash key 和value序列化模式
         template.setHashKeySerializer(new StringRedisSerializer());
-        template.setHashValueSerializer(this.fastJsonRedisSerializer());
+        template.setHashValueSerializer(this.fastJsonRedisSerializer(false));
 
         template.afterPropertiesSet();
         return template;
     }
 
-    private FastJsonRedisSerializer<Object> fastJsonRedisSerializer()
+    private FastJsonRedisSerializer<Object> fastJsonRedisSerializer(boolean WriteClassName)
     {
         //使用FastJsonRedisSerializer来序列化和反序列化redis的value值
         FastJsonRedisSerializer<Object> fastJsonRedisSerializer = new FastJsonRedisSerializer<>(Object.class);
@@ -78,7 +80,11 @@ public class RedisConfig extends CachingConfigurerSupport
         fastJsonConfig.setCharset(StandardCharsets.UTF_8);
 
         fastJsonConfig.setFeatures(Feature.SupportAutoType);
-        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteClassName);
+
+        if(WriteClassName)
+        {
+            fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteClassName);
+        }
 
         //如果时间类型值为null，则返回空串
         //否则null类型的字段不返回!!!
@@ -115,52 +121,10 @@ public class RedisConfig extends CachingConfigurerSupport
     {
         return new RedisCacheManager(
                 RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory),
-                //60秒 - // 默认策略，未配置的 key 会使用这个
-                this.getRedisCacheConfigurationWithTtl(60),
+                //3600秒 - // 默认策略，未配置的 key 会使用这个
+                this.getRedisCacheConfigurationWithTtl(3600),
                 this.getRedisCacheConfigurationMap()
         );
-    }
-
-    /**
-     * 对每个缓存空间应用不同的配置
-     *
-     * @return
-     */
-    private Map<String, RedisCacheConfiguration> getRedisCacheConfigurationMap()
-    {
-        Map<String, RedisCacheConfiguration> redisCacheConfigurationMap = new HashMap<>();
-
-        //进行过期时间配置
-        //db缓存2小时
-        redisCacheConfigurationMap.put("db", this.getRedisCacheConfigurationWithTtl(7200));
-
-        return redisCacheConfigurationMap;
-    }
-
-    /**
-     * 生成一个默认配置，通过config对象即可对缓存进行自定义配置
-     *
-     * @param seconds 设置缓存的默认过期时间
-     *
-     * @return
-     */
-    private RedisCacheConfiguration getRedisCacheConfigurationWithTtl(Integer seconds)
-    {
-        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
-
-        // 设置缓存的默认过期时间，也是使用Duration设置
-        config = config.entryTtl(Duration.ofMinutes(seconds))
-                // 设置 key为string序列化
-                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
-                // 设置value为json序列化
-                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(fastJsonRedisSerializer()))
-                // 不缓存空值
-                //.disableCachingNullValues()
-                // 忽略前缀
-                //.disableKeyPrefix()
-                 ;
-
-        return config;
     }
 
     /**
@@ -181,5 +145,47 @@ public class RedisConfig extends CachingConfigurerSupport
 
             return sb.toString();
         };
+    }
+
+    /**
+     * 对每个缓存空间应用不同的配置
+     *
+     * @return
+     */
+    private Map<String, RedisCacheConfiguration> getRedisCacheConfigurationMap()
+    {
+        Map<String, RedisCacheConfiguration> redisCacheConfigurationMap = new HashMap<>();
+
+        //进行过期时间配置
+        //db缓存2小时
+        redisCacheConfigurationMap.put(_PREFIX + "db", this.getRedisCacheConfigurationWithTtl(7200));
+
+        return redisCacheConfigurationMap;
+    }
+
+    /**
+     * 生成一个默认配置，通过config对象即可对缓存进行自定义配置
+     *
+     * @param seconds 设置缓存的默认过期时间
+     *
+     * @return
+     */
+    private RedisCacheConfiguration getRedisCacheConfigurationWithTtl(Integer seconds)
+    {
+        RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
+
+        // 设置缓存的默认过期时间，也是使用Duration设置
+        config = config.entryTtl(Duration.ofSeconds(seconds))
+                // 设置 key为string序列化
+                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
+                // 设置value为json序列化
+                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(fastJsonRedisSerializer(true)))
+                // 不缓存空值
+                //.disableCachingNullValues()
+                // 忽略前缀
+                //.disableKeyPrefix()
+                 ;
+
+        return config;
     }
 }

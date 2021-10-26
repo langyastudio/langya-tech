@@ -32,14 +32,14 @@
         select
         <include refid="Base_Column_List"/>
         from ums_user
-        where user_name = #{userName,jdbcType=INTEGER}
+        where user_name = #{userName,jdbcType=VARCHAR}
     </select>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
         <!--@mbg.generated-->
         delete
         from ums_user
-        where id = #{id,jdbcType=INTEGER}
+        where user_name = #{userName,jdbcType=VARCHAR}
     </delete>
 
     <insert id="insertSelective" keyColumn="id" keyProperty="id"
@@ -183,6 +183,6 @@
                 create_time = #{createTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        where id = #{id,jdbcType=INTEGER}
+        where user_name = #{userName,jdbcType=VARCHAR}
     </update>
 </mapper>
