@@ -121,6 +121,7 @@ public class RedisConfig extends CachingConfigurerSupport
     {
         return new RedisCacheManager(
                 RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory),
+
                 //3600秒 - // 默认策略，未配置的 key 会使用这个
                 this.getRedisCacheConfigurationWithTtl(3600),
                 this.getRedisCacheConfigurationMap()
@@ -158,7 +159,7 @@ public class RedisConfig extends CachingConfigurerSupport
 
         //进行过期时间配置
         //db缓存2小时
-        redisCacheConfigurationMap.put(_PREFIX + "db", this.getRedisCacheConfigurationWithTtl(7200));
+        redisCacheConfigurationMap.put("db", this.getRedisCacheConfigurationWithTtl(7200));
 
         return redisCacheConfigurationMap;
     }
@@ -174,17 +175,17 @@ public class RedisConfig extends CachingConfigurerSupport
     {
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig();
 
-        // 设置缓存的默认过期时间，也是使用Duration设置
-        config = config.entryTtl(Duration.ofSeconds(seconds))
+                // 增加缓存前缀
+        config = config.prefixCacheNameWith(_PREFIX)
+                // 设置缓存的默认过期时间
+                .entryTtl(Duration.ofSeconds(seconds))
                 // 设置 key为string序列化
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(new StringRedisSerializer()))
                 // 设置value为json序列化
                 .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(fastJsonRedisSerializer(true)))
                 // 不缓存空值
                 //.disableCachingNullValues()
-                // 忽略前缀
-                //.disableKeyPrefix()
-                 ;
+                ;
 
         return config;
     }
