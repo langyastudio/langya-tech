@@ -1,3 +1,4 @@
+/*
 package com.langyastudio.springboot.common.tool;
 
 import org.apache.ibatis.cache.Cache;
@@ -97,4 +98,4 @@ public class MybatisCache implements Cache
     {
         return this.readWriteLock;
     }
-}
+}*/
