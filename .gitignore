@@ -1,1 +1,4 @@
 spring-boot/logs/
+.idea/
+spring-cloud/nacos-discovery-provider/target/
+*.iml
