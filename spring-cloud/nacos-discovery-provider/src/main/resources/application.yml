@@ -1,18 +1,21 @@
 server:
-  port: 18082
+  port: 18081
 
 spring:
   application:
-    name: service-provider
+    name: nacos-discovery-provider
 
   cloud:
+    #Nacos
     nacos:
       username: nacos
       password: nacos
       discovery:
-        #Nacos
         server-addr: 192.168.123.22:8848
-        cluster-name: service-provider
+        namespace: public
+        cluster-name: DEFAULT
+        group: DEFAULT_GROUP
+
 
 management:
   endpoints:
