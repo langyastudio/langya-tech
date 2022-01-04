@@ -1,0 +1,26 @@
+server:
+  port: 18071
+
+spring:
+  application:
+    name: nacos-config
+
+  cloud:
+    #Nacos
+    nacos:
+      username: nacos
+      password: nacos
+      config:
+        server-addr: 192.168.123.22:8848
+        namespace: public
+        cluster-name: DEFAULT
+        group: DEFAULT_GROUP
+        file-extension: yaml
+
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: '*'
