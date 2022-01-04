@@ -1,4 +1,4 @@
-package com.langyastudio.cloud;
+package com.langyastudio.cloud.middleware;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
