@@ -1,7 +1,7 @@
 package com.langyastudio.cloud.controller;
 
 import com.alibaba.cloud.nacos.NacosConfigManager;
-import com.langyastudio.cloud.config.UserConfig;
+import com.langyastudio.cloud.propertie.UserConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RefreshScope
-class SampleController {
-
+class SampleController
+{
     @Autowired
     UserConfig userConfig;
 
@@ -34,19 +34,21 @@ class SampleController {
     Integer age;
 
     @RequestMapping("/user")
-    public String simple() {
+    public String simple()
+    {
         return "Hello Nacos Config!" + "Hello " + userName + " " + age + " [UserConfig]: "
                 + userConfig + "!" + nacosConfigManager.getConfigService();
     }
 
     @RequestMapping("/get/{name}")
-    public String getValue(@PathVariable String name) {
+    public String getValue(@PathVariable String name)
+    {
         return String.valueOf(environment.getProperty(name));
     }
 
     @RequestMapping("/bool")
-    public boolean bool() {
-        return (Boolean) (userConfig.getMap().get("2"));
+    public boolean bool()
+    {
+        return (Boolean) (userConfig.getMap().get("location"));
     }
-
 }

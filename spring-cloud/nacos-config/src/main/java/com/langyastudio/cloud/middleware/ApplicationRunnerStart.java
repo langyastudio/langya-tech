@@ -1,5 +1,6 @@
 package com.langyastudio.cloud.middleware;
 
+import java.util.concurrent.Executor;
 import com.alibaba.cloud.nacos.NacosConfigManager;
 import com.alibaba.nacos.api.config.listener.Listener;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,6 @@ import java.io.StringReader;
 import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.Properties;
-import java.util.concurrent.Executor;
 
 /**
  * 继承Application接口后项目启动时会按照执行顺序执行run方法
@@ -45,8 +45,7 @@ public class ApplicationRunnerStart implements ApplicationRunner
     public void run(ApplicationArguments args) throws Exception
     {
         nacosConfigManager.getConfigService().addListener(
-                "nacos-config-custom.yml", "DEFAULT_GROUP", new Listener()
-                {
+                "nacos-config-dev.yml", "DEFAULT_GROUP", new Listener() {
 
                     /**
                      * Callback with latest config data.
@@ -54,23 +53,19 @@ public class ApplicationRunnerStart implements ApplicationRunner
                      * server
                      */
                     @Override
-                    public void receiveConfigInfo(String configInfo)
-                    {
+                    public void receiveConfigInfo(String configInfo) {
                         Properties properties = new Properties();
-                        try
-                        {
+                        try {
                             properties.load(new StringReader(configInfo));
                         }
-                        catch (IOException e)
-                        {
+                        catch (IOException e) {
                             e.printStackTrace();
                         }
-                        log.info("config changed: " + properties);
+                        System.out.println("config changed: " + properties);
                     }
 
                     @Override
-                    public Executor getExecutor()
-                    {
+                    public Executor getExecutor() {
                         return null;
                     }
                 });

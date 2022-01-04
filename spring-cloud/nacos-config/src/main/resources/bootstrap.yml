@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: nacos-config
+
+  cloud:
+    #Nacos
+    nacos:
+      username: nacos
+      password: nacos
+      config:
+        server-addr: 192.168.123.22:8848
+        #namespace: public
+        group: DEFAULT_GROUP
+        file-extension: yml
