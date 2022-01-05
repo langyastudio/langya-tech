@@ -1,0 +1,43 @@
+server:
+  port: 18061
+
+
+spring:
+  main:
+    #springcloudgateway 的内部是通过 netty+webflux 实现的
+    #webflux 实现和 spring-boot-starter-web 依赖冲突
+    web-application-type: reactive
+
+  application:
+    name: nacos-gateway-discovery
+
+  cloud:
+    #Nacos
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.123.22:8848
+        namespace: public
+        cluster-name: DEFAULT
+        group: DEFAULT_GROUP
+
+    #spring cloud gateway
+    gateway:
+      routes:
+        - id: nacos-route
+          uri: lb://nacos-discovery-provider
+          predicates:
+            - args[pattern]: /nacos/**
+              name: Path
+          filters:
+            - StripPrefix=1
+
+
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: '*'
