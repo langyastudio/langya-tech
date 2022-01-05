@@ -29,6 +29,7 @@ logging:
 
 
 #feign client config
+#https://cloud.spring.io/spring-cloud-openfeign/reference/html/appendix.html
 feign:
   compression:
     request:
