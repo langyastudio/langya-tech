@@ -1,6 +1,7 @@
 server:
   port: 18091
 
+
 spring:
   application:
     name: nacos-discovery-consumer
@@ -18,7 +19,29 @@ spring:
 
 
 service-url:
-  nacos-discovery-provider: http://nacos-discovery-provider
+  nacos-discovery-provider: nacos-discovery-provider
+
+
+#feign client config
+feign:
+  compression:
+    request:
+      #是否对请求进行GZIP压缩
+      enabled: false
+      #指定压缩的请求数据类型
+      mime-types: text/xml,application/xml,application/json
+      #超过该大小的请求会被压缩
+      min-request-size: 2048
+    response:
+      #是否对响应进行GZIP压缩
+      enabled: false
+  client:
+    config:
+      default:
+        #服务请求连接超时时间（毫秒）
+        connectTimeout: 1000
+        #服务请求处理超时时间（毫秒）
+        readTimeout: 1000
 
 
 management:
