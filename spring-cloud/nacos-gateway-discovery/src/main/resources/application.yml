@@ -28,8 +28,7 @@ spring:
         - id: nacos-route
           uri: lb://nacos-discovery-provider
           predicates:
-            - args[pattern]: /nacos/**
-              name: Path
+            - Path=/nacos/**
           filters:
             - StripPrefix=1
 
