@@ -1,11 +1,12 @@
 package com.langyastudio.cloud.service.impl;
 
 import com.langyastudio.cloud.service.EchoService;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
+ * 降级熔断
+ *
  * fallback class for the specified Feign client interface
  *
  * @author langyastudio
@@ -22,12 +23,12 @@ public class EchoServiceImpl implements EchoService
     @Override
     public String echo(@PathVariable("str") String str)
     {
-        return "echo fallback";
+        return "调用失败，服务被降级";
     }
 
     @Override
     public String divide(@RequestParam Integer a, @RequestParam Integer b)
     {
-        return "divide fallback";
+        return "调用失败，服务被降级";
     }
 }

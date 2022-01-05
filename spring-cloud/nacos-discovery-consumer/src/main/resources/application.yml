@@ -16,6 +16,7 @@ spring:
         cluster-name: DEFAULT
         group: DEFAULT_GROUP
 
+
 service-url:
   nacos-discovery-provider: http://nacos-discovery-provider
 
