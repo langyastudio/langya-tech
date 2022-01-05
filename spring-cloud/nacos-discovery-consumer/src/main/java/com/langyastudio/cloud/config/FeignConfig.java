@@ -3,7 +3,9 @@ package com.langyastudio.cloud.config;
 import com.langyastudio.cloud.service.impl.EchoServiceImpl;
 import feign.Logger;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class FeignConfig
 {
     @Bean

@@ -32,14 +32,17 @@ public class EchoController
     @GetMapping("/sleep")
     public String sleep()
     {
+        log.info("sleep start");
         try
         {
-            Thread.sleep(1000L);
+            Thread.sleep(2000L);
         }
         catch (InterruptedException e)
         {
             e.printStackTrace();
         }
+        log.info("sleep end");
+
         return "ok";
     }
 

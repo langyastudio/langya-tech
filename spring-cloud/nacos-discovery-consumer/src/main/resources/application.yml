@@ -22,6 +22,12 @@ service-url:
   nacos-discovery-provider: nacos-discovery-provider
 
 
+#feign log
+logging:
+  level:
+    com.langyastudio.cloud.service.EchoService: debug
+
+
 #feign client config
 feign:
   compression:

@@ -21,6 +21,12 @@ public class EchoServiceImpl implements EchoService
     }
 
     @Override
+    public String sleep()
+    {
+        return "调用失败，服务被降级";
+    }
+
+    @Override
     public String echo(@PathVariable("str") String str)
     {
         return "调用失败，服务被降级";

@@ -59,6 +59,13 @@ public class TestController
         return echoService.notFound();
     }
 
+    @GetMapping("/sleep-feign")
+    public String sleepFeign()
+    {
+        return echoService.sleep();
+    }
+
+
     @GetMapping("/divide-feign")
     public String divide(@RequestParam Integer a, @RequestParam Integer b)
     {

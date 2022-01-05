@@ -20,6 +20,9 @@ public interface EchoService
     @GetMapping("/notfound")
     String notFound();
 
+    @GetMapping("/sleep")
+    String sleep();
+
     @GetMapping("/echo/{str}")
     String echo(@PathVariable("str") String str);
 
