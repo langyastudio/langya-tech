@@ -19,8 +19,19 @@ spring:
       name: admin
       password: 123456
 
-  #不显示admin-server的监控信息
+
+  # 配置admin
   boot:
     admin:
+      ui:
+        #页头
+        brand: <img src="assets/img/icon-spring-boot-admin.svg"><span>服务监控</span>
+        #登录的标题
+        title: 服务监控
+        #隐藏 about 菜单
+        view-settings:
+          - name: about
+            enabled: false
       discovery:
+        #不显示admin-server的监控信息
         ignored-services: ${spring.application.name}

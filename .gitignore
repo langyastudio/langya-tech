@@ -2,3 +2,4 @@ spring-boot/logs/
 .idea/
 target/
 *.iml
+spring-cloud/log/
