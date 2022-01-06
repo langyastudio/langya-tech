@@ -65,7 +65,6 @@ public class TestController
         return echoService.sleep();
     }
 
-
     @GetMapping("/divide-feign")
     public String divide(@RequestParam Integer a, @RequestParam Integer b)
     {

@@ -13,6 +13,7 @@
 
     <modules>
         <module>nacos-discovery-provider</module>
+        <module>cloud-common</module>
     </modules>
 
     <groupId>com.langyastudio.cloud</groupId>
@@ -43,6 +44,7 @@
         <maven.compiler.target>11</maven.compiler.target>
 
         <!--tools-->
+        <fastjson.verion>1.2.78</fastjson.verion>
         <jetbrains.annotations.version>23.0.0</jetbrains.annotations.version>
 
     </properties>
@@ -68,6 +70,11 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.verion}</version>
+        </dependency>
 
         <!--=======================================开发工具==========================================================-->
         <!--dev tool-->
@@ -120,6 +127,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.langyastudio.cloud</groupId>
+                <artifactId>cloud-common</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+
             <!--=======================================microservice======================================================-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>

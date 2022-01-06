@@ -16,6 +16,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.langyastudio.cloud</groupId>
+            <artifactId>cloud-common</artifactId>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
