@@ -1,0 +1,30 @@
+version: '3.5'
+
+services:
+  nacos-registry:
+    image: nacos/nacos-server:2.0.3
+    container_name: nacos-registry
+    #command:
+    restart: always
+    #https://nacos.io/zh-cn/docs/quick-start-docker.html
+    environment:
+      - "MODE=standalone"
+    networks:
+      edu-net:
+        ipv4_address: 172.28.0.40
+    ports:
+      - 8848:8848
+
+#docker network ls
+#The actual name is volume_edu-net
+#表示新建了 `172.28.0.0/16` 的网络，名称为 edu-net
+#新建网络是为了实现同主机的多个容器间网络互通，走内网，类似于软件交换机
+networks:
+  edu-net:
+    driver: bridge
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.28.0.0/16

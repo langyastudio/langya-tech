@@ -1,0 +1,25 @@
+server:
+  port: 19001
+
+spring:
+  application:
+    name: admin-server
+
+  cloud:
+    #Nacos
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.123.22:8848
+        namespace: public
+        cluster-name: DEFAULT
+        group: DEFAULT_GROUP
+
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: '*'

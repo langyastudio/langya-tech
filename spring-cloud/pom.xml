@@ -32,6 +32,9 @@
         <spring.cloud.alibaba.dependencies.version>2021.1</spring.cloud.alibaba.dependencies.version>
         <spring.cloud.version>2021.0.0</spring.cloud.version>
 
+        <!--spring-boot-->
+        <spring.boot.admin.starter.server>2.5.2</spring.boot.admin.starter.server>
+
         <!--encode-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -131,6 +134,17 @@
                 <groupId>com.langyastudio.cloud</groupId>
                 <artifactId>cloud-common</artifactId>
                 <version>1.0-SNAPSHOT</version>
+            </dependency>
+
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring.boot.admin.starter.server}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring.boot.admin.starter.server}</version>
             </dependency>
 
             <!--=======================================microservice======================================================-->
