@@ -32,4 +32,4 @@ management:
 #添加开启admin的日志监控
 logging:
   file:
-    name: admin-client.log
+    name: logs/admin-client.log

@@ -1,0 +1,26 @@
+server:
+  port: 19011
+
+spring:
+  application:
+    name: admin-security-server
+
+  cloud:
+    #Nacos
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.123.22:8848
+
+  # 配置登录用户名和密码
+  security:
+    user:
+      name: admin
+      password: 123456
+
+  #不显示admin-server的监控信息
+  boot:
+    admin:
+      discovery:
+        ignored-services: ${spring.application.name}
