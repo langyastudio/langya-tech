@@ -3,3 +3,4 @@ spring-boot/logs/
 target/
 *.iml
 spring-cloud/log/
+spring-cloud/logs/

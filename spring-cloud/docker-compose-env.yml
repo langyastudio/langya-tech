@@ -15,6 +15,23 @@ services:
     ports:
       - 8848:8848
 
+
+  sentinel-dashboard:
+    image: bladex/sentinel-dashboard:1.8.0
+    container_name: sentinel-dashboard
+    #account and password: [sentinel sentinel]
+    #修改默认密码为 123456
+    #https://sentinelguard.io/zh-cn/docs/dashboard.html
+    environment:
+      - sentinel.dashboard.auth.password=123456
+    restart: always
+    networks:
+      edu-net:
+        ipv4_address: 172.28.0.50
+    ports:
+      - 8858:8858
+
+
 #docker network ls
 #The actual name is volume_edu-net
 #表示新建了 `172.28.0.0/16` 的网络，名称为 edu-net
