@@ -15,7 +15,7 @@ public class RestTemplateConfig
 {
     @Bean
     @LoadBalanced
-    //@SentinelRestTemplate
+    @SentinelRestTemplate
     public RestTemplate restTemplate()
     {
         return new RestTemplate();

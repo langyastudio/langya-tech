@@ -1,6 +1,7 @@
 package com.langyastudio.cloud.controller;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
+import data.ResultInfo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +52,18 @@ public class EchoController
     {
         log.info(string);
         return "hello Nacos Discovery " + string;
+    }
+
+    @GetMapping("/echoex/{string}")
+    public ResultInfo echoEx(@PathVariable String string)
+    {
+        //for test
+        if("".equals(string) || "0".equals(string))
+        {
+            throw new NullPointerException();
+        }
+
+        return ResultInfo.data("hello Nacos Discovery " + string);
     }
 
     @GetMapping("/divide")

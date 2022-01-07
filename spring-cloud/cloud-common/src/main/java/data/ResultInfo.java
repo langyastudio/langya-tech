@@ -23,6 +23,14 @@ public class ResultInfo
         this.setTime(System.currentTimeMillis());
     }
 
+    public ResultInfo(Integer code, String msg, Object result, Long time)
+    {
+        this.setCode(code);
+        this.setResult(result);
+        this.setMsg(msg);
+        this.setTime(time);
+    }
+
     /**
      * 返回正确提示
      *
