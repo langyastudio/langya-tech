@@ -1,0 +1,37 @@
+server:
+  port: 20001
+
+spring:
+  application:
+    name: sentinel-server
+
+  main:
+    allow-circular-references: true
+
+  cloud:
+    #Nacos
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.123.22:8848
+        namespace: public
+        cluster-name: DEFAULT
+        group: DEFAULT_GROUP
+
+    #配置sentinel dashboard地址
+    sentinel:
+      transport:
+        dashboard: 192.168.123.22:8858
+        port: 8719
+
+service-url:
+  nacos-discovery-provider: http://nacos-discovery-provider
+
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: '*'
