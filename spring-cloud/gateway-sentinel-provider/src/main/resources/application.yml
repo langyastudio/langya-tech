@@ -1,0 +1,53 @@
+server:
+  port: 18062
+
+
+spring:
+  main:
+    #springcloudgateway 的内部是通过 netty+webflux 实现的
+    #webflux 实现和 spring-boot-starter-web 依赖冲突
+    web-application-type: reactive
+
+  application:
+    name: gateway-sentinel-provider
+
+  cloud:
+    #Nacos
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.123.22:8848
+        namespace: public
+        cluster-name: DEFAULT
+        group: DEFAULT_GROUP
+
+    #spring cloud gateway
+    gateway:
+      routes:
+        - id: nacos-route
+          uri: lb://nacos-discovery-provider
+          predicates:
+            - Path=/nacos/**
+          filters:
+            - StripPrefix=1
+
+    sentinel:
+      # 是否饥饿加载。默认为 false 关闭
+      eager: true
+      transport:
+        # Sentinel 控制台启动在 8858 端口
+        dashboard: 192.168.123.22:8858
+
+      # Sentinel 对 Spring Cloud Gateway 的专属配置项，对应 SentinelGatewayProperties 类
+      scg:
+        # 过滤器顺序，默认为 -2147483648 最高优先级
+        order: -2147483648
+
+management:
+  endpoints:
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: '*'

@@ -38,7 +38,7 @@ public class ApplicationRunnerStart implements ApplicationRunner
             log.info("/ /`  / / \\ | |\\/| | |_) | |   | |_   | |  | |_  ");
             log.info("\\_\\_, \\_\\_/ |_|  | |_|   |_|__ |_|__  |_|  |_|__ ");
             log.info("                                                      ");
-            log.info("nacos-gateway-系统启动完毕，地址：{}", url);
+            log.info("gateway-sentinel系统启动完毕，地址：{}", url);
         }
     }
 }

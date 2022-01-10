@@ -2,23 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <groupId>com.langyastudio.cloud</groupId>
         <artifactId>springcloud-example</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>sentinel-server</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>sentinel-server</name>
-    <description>sentinel-server for sample</description>
+    <artifactId>gateway-sentinel-provider</artifactId>
+    <name>Spring Cloud Starter Alibaba Nacos Discovery x Gateway Example</name>
+    <description>Example demonstrating how to use gateway with nacos</description>
+    <packaging>jar</packaging>
+
 
     <dependencies>
-        <dependency>
-            <groupId>com.langyastudio.cloud</groupId>
-            <artifactId>cloud-common</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -28,16 +25,15 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
-
-        <!--sentinel配置存储的数据源-->
+        <!--sentinel支持gateway-->
         <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>sentinel-datasource-nacos</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -60,4 +56,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
