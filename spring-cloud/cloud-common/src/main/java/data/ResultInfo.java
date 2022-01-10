@@ -1,6 +1,8 @@
 package data;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -8,6 +10,8 @@ import lombok.extern.log4j.Log4j2;
  */
 @Data
 @Log4j2
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResultInfo
 {
     private Integer code;
