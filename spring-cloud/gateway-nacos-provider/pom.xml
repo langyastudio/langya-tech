@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>nacos-gateway-discovery</artifactId>
+    <artifactId>gateway-nacos-provider</artifactId>
     <name>Spring Cloud Starter Alibaba Nacos Discovery x Gateway Example</name>
     <description>Example demonstrating how to use gateway with nacos</description>
     <packaging>jar</packaging>
