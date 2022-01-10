@@ -9,7 +9,7 @@ spring:
     web-application-type: reactive
 
   application:
-    name: gateway-nacos-provider
+    name: nacos-gateway-provider
 
   cloud:
     #Nacos
