@@ -20,12 +20,24 @@ spring:
         cluster-name: DEFAULT
         group: DEFAULT_GROUP
 
-    #配置sentinel dashboard地址
+    #sentinel
     sentinel:
       transport:
+        #dashboard地址
         dashboard: 192.168.123.22:8858
         port: 8719
-
+      #config datasource
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 192.168.123.22:8848
+            username: nacos
+            password: nacos
+            dataId: ${spring.application.name}-sentinel
+            #namespace: public
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
 
 feign:
   sentinel:
