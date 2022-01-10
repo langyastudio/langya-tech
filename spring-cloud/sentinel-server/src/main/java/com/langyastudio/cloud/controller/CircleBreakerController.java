@@ -49,7 +49,10 @@ public class CircleBreakerController
         return restTemplate.getForObject(providerServiceUrl + "/echoex/" + id, ResultInfo.class);
     }
 
-    public ResultInfo handleFallback(Long id)
+    /**
+     * 熔断函数，需要与接口的参数匹配 or use fallbackClass
+     */
+    public ResultInfo handleFallback(String id)
     {
         return ResultInfo.data("handleFallback 服务降级返回");
     }

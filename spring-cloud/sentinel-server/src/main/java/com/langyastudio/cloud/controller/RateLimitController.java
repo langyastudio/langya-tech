@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 限流功能
+ * 限流功能 - 需要在dashboard配置规则
  */
 @RestController
 @RequestMapping("/rateLimit")

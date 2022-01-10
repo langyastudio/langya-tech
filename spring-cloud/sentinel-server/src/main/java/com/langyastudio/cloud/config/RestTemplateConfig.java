@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
 /**
+ * Rest http client by Sentinel
+ *
  * @author langyastudio
  * @date 2022年01月07日
  */
