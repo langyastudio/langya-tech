@@ -1,6 +1,7 @@
 server:
   port: 20001
 
+
 spring:
   application:
     name: sentinel-server
@@ -25,8 +26,20 @@ spring:
         dashboard: 192.168.123.22:8858
         port: 8719
 
+
+feign:
+  sentinel:
+    #打开 sentinel 对 feign 的支持
+    enabled: true
+
+#feign log
+logging:
+  level:
+    com.langyastudio.cloud.service.EchoService: debug
+
 service-url:
   nacos-discovery-provider: http://nacos-discovery-provider
+
 
 management:
   endpoints:
