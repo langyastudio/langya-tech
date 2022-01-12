@@ -35,6 +35,9 @@
         <!--spring-boot-->
         <spring.boot.admin.starter.server>2.5.2</spring.boot.admin.starter.server>
 
+        <!--data-->
+        <jjwt.version>0.9.1</jjwt.version>
+
         <!--encode-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -48,6 +51,7 @@
 
         <!--tools-->
         <fastjson.verion>1.2.78</fastjson.verion>
+        <hutool-all.version>5.7.17</hutool-all.version>
         <jetbrains.annotations.version>23.0.0</jetbrains.annotations.version>
 
     </properties>
@@ -152,6 +156,19 @@
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-client</artifactId>
                 <version>${spring.boot.admin.starter.server}</version>
+            </dependency>
+
+            <!--jjwt-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <!--hutool-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool-all.version}</version>
             </dependency>
 
             <!--=======================================microservice======================================================-->
