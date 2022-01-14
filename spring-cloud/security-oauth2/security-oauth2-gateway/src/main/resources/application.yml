@@ -1,0 +1,75 @@
+server:
+  port: 9201
+
+spring:
+  main:
+    #springcloudgateway 的内部是通过 netty+webflux 实现的
+    #webflux 实现和 spring-boot-starter-web 依赖冲突
+    web-application-type: reactive
+
+  profiles:
+    active: dev
+
+  application:
+    name: security-oauth2-gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.123.22:8848
+        username: nacos
+        password: nacos
+
+    gateway:
+      routes: #配置路由路径
+        - id: oauth2-api-route
+          uri: lb://security-oauth2-api
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+        - id: oauth2-auth-route
+          uri: lb://security-oauth2-auth
+          predicates:
+            - Path=/auth/**
+          filters:
+            - StripPrefix=1
+      discovery:
+        locator:
+          #开启从注册中心动态创建路由的功能
+          enabled: true
+          #使用小写服务名，默认是大写
+          lower-case-service-id: true
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          #配置RSA的公钥访问地址
+          jwk-set-uri: 'http://localhost:9401/rsa/publicKey'
+
+  redis:
+    host: 192.168.123.22
+    port: 6379
+    password: Hacfin_Redis8
+    timeout: 6000ms
+    lettuce:
+      pool:
+        # 最大连接数
+        max-active: 10
+        # 最大阻塞等待时间(负数表示没限制)
+        max-wait: 10000ms
+        # 最大空闲
+        max-idle: 10
+        # 最小空闲
+        min-idle: 0
+      #cluster:       # 集群配置
+      #nodes: 127.0.0.1:6381,127.0.0.1:6382,127.0.0.1:6383,127.0.0.1:6384,127.0.0.1:6385,127.0.0.1:6386
+      #max-redirects: 2  # 最大重定向次数
+
+secure:
+  ignore:
+    #配置白名单路径
+    urls:
+      - "/actuator/**"
+      - "/auth/oauth/token"

@@ -2,7 +2,7 @@ package com.langyastudio.cloud.service;
 
 import com.langyastudio.cloud.config.FeignConfig;
 import com.langyastudio.cloud.service.impl.EchoServiceImpl;
-import data.ResultInfo;
+import com.langyastudio.common.data.ResultInfo;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

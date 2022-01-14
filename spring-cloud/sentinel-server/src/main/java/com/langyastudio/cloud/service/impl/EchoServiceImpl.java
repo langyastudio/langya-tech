@@ -1,7 +1,7 @@
 package com.langyastudio.cloud.service.impl;
 
 import com.langyastudio.cloud.service.EchoService;
-import data.ResultInfo;
+import com.langyastudio.common.data.ResultInfo;
 import org.springframework.web.bind.annotation.PathVariable;
 
 /**

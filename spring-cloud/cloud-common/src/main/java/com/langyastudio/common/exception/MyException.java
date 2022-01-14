@@ -1,8 +1,8 @@
-package exception;
+package com.langyastudio.common.exception;
 
 
-import data.EC;
-import data.IErrorCode;
+import com.langyastudio.common.data.EC;
+import com.langyastudio.common.data.IErrorCode;
 
 /**
  * 自定义异常处理

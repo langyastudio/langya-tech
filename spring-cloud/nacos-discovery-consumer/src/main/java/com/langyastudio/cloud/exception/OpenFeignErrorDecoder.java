@@ -1,8 +1,9 @@
 package com.langyastudio.cloud.exception;
 
 import com.alibaba.fastjson.JSON;
-import data.EC;
-import data.ResultInfo;
+import com.langyastudio.common.data.EC;
+import com.langyastudio.common.data.ResultInfo;
+import com.langyastudio.common.exception.MyException;
 import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;
@@ -42,7 +43,7 @@ public class OpenFeignErrorDecoder implements ErrorDecoder
                 ResultInfo resultData = JSON.parseObject(body, ResultInfo.class);
                 if (null != resultData && resultData.getCode().equals(EC.ERROR_SYSTEM_EXCEPTION.getCode()))
                 {
-                    return new MyException(resultData.getCode(), resultData.getMsg());
+                    return new com.langyastudio.common.exception.MyException(resultData.getCode(), resultData.getMsg());
                 }
             }
         }

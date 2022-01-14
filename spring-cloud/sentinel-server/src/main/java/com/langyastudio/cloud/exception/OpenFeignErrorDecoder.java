@@ -1,9 +1,9 @@
 package com.langyastudio.cloud.exception;
 
 import com.alibaba.fastjson.JSON;
-import data.EC;
-import data.ResultInfo;
-import exception.MyException;
+import com.langyastudio.common.data.EC;
+import com.langyastudio.common.data.ResultInfo;
+import com.langyastudio.common.exception.MyException;
 import feign.Response;
 import feign.Util;
 import feign.codec.ErrorDecoder;

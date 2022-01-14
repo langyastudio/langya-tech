@@ -1,7 +1,7 @@
 package com.langyastudio.cloud.controller;
 
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
-import data.ResultInfo;
+import com.langyastudio.common.data.ResultInfo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

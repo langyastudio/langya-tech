@@ -1,4 +1,4 @@
-package data;
+package com.langyastudio.common.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

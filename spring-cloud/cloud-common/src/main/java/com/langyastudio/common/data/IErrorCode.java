@@ -1,4 +1,4 @@
-package data;
+package com.langyastudio.common.data;
 
 /**
  * 封装API的错误码

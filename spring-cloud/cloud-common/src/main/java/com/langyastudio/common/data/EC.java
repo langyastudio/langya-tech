@@ -1,4 +1,4 @@
-package data;
+package com.langyastudio.common.data;
 
 /**
  * 常用API操作码

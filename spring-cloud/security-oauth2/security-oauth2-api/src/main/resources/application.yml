@@ -1,0 +1,21 @@
+server:
+  port: 9501
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: security-oauth2-api
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.123.22:8848
+        username: nacos
+        password: nacos
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

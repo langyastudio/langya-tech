@@ -36,7 +36,7 @@
         <spring.boot.admin.starter.server>2.5.2</spring.boot.admin.starter.server>
 
         <!--data-->
-        <jjwt.version>0.9.1</jjwt.version>
+        <nimbus-jose-jwt.version>9.15.2</nimbus-jose-jwt.version>
 
         <!--encode-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -160,9 +160,9 @@
 
             <!--jjwt-->
             <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jjwt.version}</version>
+                <groupId>com.nimbusds</groupId>
+                <artifactId>nimbus-jose-jwt</artifactId>
+                <version>${nimbus-jose-jwt.version}</version>
             </dependency>
             <!--hutool-->
             <dependency>

@@ -1,7 +1,7 @@
 package com.langyastudio.cloud.controller;
 
 import com.langyastudio.cloud.service.EchoService;
-import data.ResultInfo;
+import com.langyastudio.common.data.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
