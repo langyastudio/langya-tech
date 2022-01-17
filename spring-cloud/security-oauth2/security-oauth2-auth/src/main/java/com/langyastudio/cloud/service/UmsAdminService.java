@@ -15,14 +15,14 @@ public class UmsAdminService
 
     public UserDto loadUserByUsername(String username)
     {
-        String  password = passwordEncoder.encode("123456");
+        String  password = passwordEncoder.encode("123456a");
         if("admin".equals(username))
         {
             return new UserDto(1L, "admin", password, 1, "", CollUtil.toList("ADMIN"));
         }
         else if("langya".equals(username))
         {
-            return new UserDto(1L, "admin", password, 1, "", CollUtil.toList("ADMIN", "TEST"));
+            return new UserDto(1L, "langya", password, 1, "", CollUtil.toList("ADMIN", "TEST"));
         }
 
         return null;
