@@ -2,6 +2,7 @@ package com.langyastudio.cloud.config;
 
 import com.langyastudio.cloud.component.JwtTokenEnhancer;
 import com.langyastudio.cloud.service.impl.UserDetailsServiceImpl;
+import com.langyastudio.common.constant.AuthConstant;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,14 +40,14 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception
     {
         clients.inMemory()
-                .withClient("api-admin")
+                .withClient(AuthConstant.ADMIN_CLIENT_ID)
                 .secret(passwordEncoder.encode("123456"))
                 .scopes("all")
                 .authorizedGrantTypes("password", "refresh_token")
                 .accessTokenValiditySeconds(3600 * 24)
                 .refreshTokenValiditySeconds(3600 * 24 * 7)
                 .and()
-                .withClient("api-portal")
+                .withClient(AuthConstant.PORTAL_CLIENT_ID)
                 .secret(passwordEncoder.encode("123456"))
                 .scopes("all")
                 .authorizedGrantTypes("password", "refresh_token")
