@@ -52,12 +52,14 @@ public class ResourceServerConfig
                 .pathMatchers(ArrayUtil.toArray(ignoreUrlsConfig.getUrls(), String.class)).permitAll()
                 //鉴权管理器配置
                 .anyExchange().access(authorizationManager)
-                .and().exceptionHandling()
+                .and()
+                .exceptionHandling()
                 //处理未授权
                 .accessDeniedHandler(restfulAccessDeniedHandler)
                 //处理未认证
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
-                .and().csrf().disable();
+                .and()
+                .csrf().disable();
 
         return http.build();
     }

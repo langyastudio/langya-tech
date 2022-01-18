@@ -83,6 +83,8 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter
     public JwtAccessTokenConverter accessTokenConverter()
     {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        //or 设置对称签名
+        //jwtAccessTokenConverter.setSigningKey("2430B31859314947BC84697E70B3D31F");
         jwtAccessTokenConverter.setKeyPair(keyPair());
         return jwtAccessTokenConverter;
     }

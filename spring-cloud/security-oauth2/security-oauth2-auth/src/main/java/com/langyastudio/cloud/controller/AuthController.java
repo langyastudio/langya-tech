@@ -28,9 +28,9 @@ public class AuthController
      * name = "grant_type", value = "授权模式", required = true
      * name = "client_id", value = "Oauth2客户端ID", required = true
      * name = "client_secret", value = "Oauth2客户端秘钥", required = true
-     * name = "refresh_token", value = "刷新token"
      * name = "username", value = "登录用户名"
      * name = "password", value = "登录密码"
+     * name = "refresh_token", value = "刷新token"
      */
     @PostMapping(value = "/token")
     public ResultInfo postAccessToken(Principal principal,
