@@ -27,8 +27,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * 鉴权管理器，用于判断是否有资源的访问权限
- * 基于路径匹配器授权
+ * 鉴权管理器，用于判断是否有资源的访问权限（基于路径匹配器授权）
  */
 @Component
 public class AuthorizationManager implements ReactiveAuthorizationManager<AuthorizationContext>
@@ -108,6 +107,7 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
                 .filter(Authentication::isAuthenticated)
                 .flatMapIterable(Authentication::getAuthorities)
                 .map(GrantedAuthority::getAuthority)
+                //roleId是请求用户的角色(格式:ROLE_{roleId})，authorities是请求资源所需要角色的集合
                 .any(authorities::contains)
                 .map(AuthorizationDecision::new)
                 .defaultIfEmpty(new AuthorizationDecision(false));

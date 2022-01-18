@@ -36,6 +36,9 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter
     private final AuthenticationManager  authenticationManager;
     private final JwtTokenEnhancer       jwtTokenEnhancer;
 
+    /**
+     * 客户端信息配置
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception
     {
@@ -55,6 +58,9 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter
                 .refreshTokenValiditySeconds(3600 * 24 * 7);
     }
 
+    /**
+     * 配置授权（authorization）以及令牌（token）
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception
     {
@@ -73,12 +79,18 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter
                 .tokenEnhancer(enhancerChain);
     }
 
+    /**
+     * 允许表单认证
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception
     {
         security.allowFormAuthenticationForClients();
     }
 
+    /**
+     * 使用非对称加密算法对token签名
+     */
     @Bean
     public JwtAccessTokenConverter accessTokenConverter()
     {
@@ -89,6 +101,9 @@ public class Oauth2ServerConfig extends AuthorizationServerConfigurerAdapter
         return jwtAccessTokenConverter;
     }
 
+    /**
+     * 从classpath下的密钥库中获取密钥对(公钥+私钥)
+     */
     @Bean
     public KeyPair keyPair()
     {

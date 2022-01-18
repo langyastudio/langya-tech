@@ -1,11 +1,14 @@
 package com.langyastudio.cloud.filter;
 
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 import com.langyastudio.common.constant.AuthConstant;
 import com.nimbusds.jose.JWSObject;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
@@ -20,6 +23,8 @@ import java.util.Objects;
 @Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered
 {
+    private RedisTemplate redisTemplate;
+
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain)
     {
@@ -41,6 +46,16 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered
             String    realToken = token.replace(AuthConstant.JWT_TOKEN_PREFIX, "");
             JWSObject jwsObject = JWSObject.parse(realToken);
             String    userStr   = jwsObject.getPayload().toString();
+
+            // 黑名单token(登出、修改密码)校验
+            JSONObject jsonObject = JSONUtil.parseObj(userStr);
+            String     jti        = jsonObject.getStr("jti");
+
+            Boolean isBlack = redisTemplate.hasKey(AuthConstant.TOKEN_BLACKLIST_PREFIX + jti);
+            if (isBlack)
+            {
+
+            }
 
             ServerHttpRequest request = serverHttpRequest.mutate().header(AuthConstant.USER_TOKEN_HEADER, userStr).build();
             exchange = exchange.mutate().request(request).build();

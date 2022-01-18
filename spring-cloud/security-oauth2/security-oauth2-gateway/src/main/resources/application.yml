@@ -25,7 +25,7 @@ spring:
         - id: oauth2-api-route
           uri: lb://security-oauth2-api
           predicates:
-            - Path=/api/**
+            - Path=/admin/**
           filters:
             - StripPrefix=1
         - id: oauth2-auth-route

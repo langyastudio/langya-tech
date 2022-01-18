@@ -16,8 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDto
 {
-    private Long         id;
-    private String       username;
+    private String       userName;
     private String       password;
     private Integer      status;
     private String       clientId;

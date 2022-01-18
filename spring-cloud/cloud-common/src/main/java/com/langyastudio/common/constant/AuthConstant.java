@@ -49,4 +49,9 @@ public interface AuthConstant
      * 用户信息Http请求头
      */
     String USER_TOKEN_HEADER = "user";
+
+    /**
+     * 黑名单
+     */
+    String TOKEN_BLACKLIST_PREFIX = "blacklist";
 }

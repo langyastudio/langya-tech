@@ -18,11 +18,11 @@ public class UmsAdminService
         String  password = passwordEncoder.encode("123456a");
         if("admin".equals(username))
         {
-            return new UserDto(1L, "admin", password, 1, "", CollUtil.toList("ADMIN"));
+            return new UserDto("admin", password, 1, "", CollUtil.toList("ADMIN"));
         }
         else if("langya".equals(username))
         {
-            return new UserDto(1L, "langya", password, 1, "", CollUtil.toList("ADMIN", "TEST"));
+            return new UserDto("langya", password, 1, "", CollUtil.toList("ADMIN", "TEST"));
         }
 
         return null;
