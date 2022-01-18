@@ -1,5 +1,7 @@
 package com.langyastudio.cloud.authorization;
 
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.convert.Convert;
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.json.JSONUtil;
@@ -7,6 +9,7 @@ import com.langyastudio.cloud.config.IgnoreUrlsConfig;
 import com.langyastudio.common.constant.AuthConstant;
 import com.langyastudio.common.domain.UserDto;
 import com.nimbusds.jose.JWSObject;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpMethod;
@@ -24,7 +27,6 @@ import reactor.core.publisher.Mono;
 import java.net.URI;
 import java.text.ParseException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 鉴权管理器，用于判断是否有资源的访问权限（基于路径匹配器授权）
@@ -99,16 +101,21 @@ public class AuthorizationManager implements ReactiveAuthorizationManager<Author
         //从Redis中获取当前路径可访问角色列表
         Object       obj         = redisTemplate.opsForHash().get(AuthConstant.RESOURCE_ROLES_MAP_KEY, uri.getPath());
         List<String> authorities = Convert.toList(String.class, obj);
-
-        authorities = authorities.stream().map(i -> i = AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
+        //authorities = authorities.stream().map(i -> i = AuthConstant.AUTHORITY_PREFIX + i).collect(Collectors.toList());
 
         //认证通过且角色匹配的用户可访问当前路径
+        List<String> finalAuthorities = authorities;
         return mono
                 .filter(Authentication::isAuthenticated)
                 .flatMapIterable(Authentication::getAuthorities)
                 .map(GrantedAuthority::getAuthority)
                 //roleId是请求用户的角色(格式:ROLE_{roleId})，authorities是请求资源所需要角色的集合
-                .any(authorities::contains)
+                .any(authority -> {
+                    String roleCode = authority.substring(AuthConstant.AUTHORITY_PREFIX.length()); // 用户的角色
+                    // 如果是超级管理员则放行
+
+                    return CollUtil.isNotEmpty(finalAuthorities) && finalAuthorities.contains(roleCode);
+                })
                 .map(AuthorizationDecision::new)
                 .defaultIfEmpty(new AuthorizationDecision(false));
     }

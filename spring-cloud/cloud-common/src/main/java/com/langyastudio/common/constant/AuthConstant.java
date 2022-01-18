@@ -43,7 +43,7 @@ public interface AuthConstant
     /**
      * JWT令牌前缀
      */
-    String JWT_TOKEN_PREFIX = "Hacfin ";
+    String JWT_TOKEN_PREFIX = "Bearer ";
 
     /**
      * 用户信息Http请求头

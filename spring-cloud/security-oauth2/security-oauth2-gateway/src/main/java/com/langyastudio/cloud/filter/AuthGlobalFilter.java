@@ -5,6 +5,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.langyastudio.common.constant.AuthConstant;
 import com.nimbusds.jose.JWSObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -23,6 +24,7 @@ import java.util.Objects;
 @Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered
 {
+    @Autowired
     private RedisTemplate redisTemplate;
 
     @Override
@@ -57,6 +59,7 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered
 
             }
 
+            // 存在token且不是黑名单，request写入JWT的载体信息
             ServerHttpRequest request = serverHttpRequest.mutate().header(AuthConstant.USER_TOKEN_HEADER, userStr).build();
             exchange = exchange.mutate().request(request).build();
         }

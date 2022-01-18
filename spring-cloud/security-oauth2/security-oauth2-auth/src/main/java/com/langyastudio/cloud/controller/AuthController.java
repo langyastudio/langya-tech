@@ -25,6 +25,7 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping("/oauth")
 public class AuthController
 {
+    @Autowired
     private RedisTemplate redisTemplate;
 
     @Autowired

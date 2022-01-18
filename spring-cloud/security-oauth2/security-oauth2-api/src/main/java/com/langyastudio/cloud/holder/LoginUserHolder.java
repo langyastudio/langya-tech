@@ -22,7 +22,8 @@ public class LoginUserHolder
 
         UserDto userDTO = new UserDto();
         userDTO.setUserName(userJsonObject.getStr("user_name"));
-        userDTO.setRoles(Convert.toList(String.class, userJsonObject.get(AuthConstant.JWT_TOKEN_HEADER)));
+        userDTO.setClientId(userJsonObject.getStr("client_id"));
+        userDTO.setRoles(Convert.toList(String.class, userJsonObject.get(AuthConstant.AUTHORITY_CLAIM_NAME)));
         return userDTO;
     }
 }
