@@ -35,6 +35,7 @@ services:
   mongo:
     image: mongo:4.4.11
     container_name: mongo
+    command: [ "--bind_ip_all" ]
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: mongo
@@ -44,6 +45,7 @@ services:
         ipv4_address: 172.28.0.60
     volumes:
       - /mnt/volume/mongo/data:/data/db
+      - /mnt/volume/mongo/log:/var/log/mongodb
     ports:
       - 27017:27017
 
