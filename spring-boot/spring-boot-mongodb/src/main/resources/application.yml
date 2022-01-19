@@ -21,6 +21,5 @@ spring:
     mongodb:
       host: 192.168.123.22
       port: 27017
-      database: edu
       username: root
       password: mongo

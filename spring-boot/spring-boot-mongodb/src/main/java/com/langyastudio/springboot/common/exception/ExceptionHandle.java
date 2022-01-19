@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.dao.*;
 import org.springframework.http.converter.HttpMessageConversionException;
-import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeException;
@@ -21,8 +20,6 @@ import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
 import java.sql.SQLSyntaxErrorException;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -43,9 +40,9 @@ public class ExceptionHandle
      */
 
     //上传文件的最大体积
-    @Value("${spring.servlet.multipart.max-file-size}")
+    @Value("${spring.servlet.multipart.max-file-size: 20M}")
     private String maxFileSize;
-    @Value("${spring.profiles.active}")
+    @Value("${spring.profiles.active: dev}")
     private String env;
 
     //------------------------------------------------------- 参数异常 --------------------------------------------------
@@ -72,18 +69,6 @@ public class ExceptionHandle
         {
             collect.add(fieldError.getField() + fieldError.getDefaultMessage());
         }
-        return ResultInfo.data(EC.ERROR_PARAM_EXCEPTION, collect);
-    }
-
-    // 处理单个参数校验失败抛出的异常
-    @ResponseBody
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResultInfo constraintViolationExceptionHandler(ConstraintViolationException e)
-    {
-        Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
-        List<String> collect = constraintViolations.stream()
-                .map(ConstraintViolation::getMessage)
-                .collect(Collectors.toList());
         return ResultInfo.data(EC.ERROR_PARAM_EXCEPTION, collect);
     }
 
@@ -223,16 +208,6 @@ public class ExceptionHandle
     public ResultInfo dataIntegrityViolationException(DataIntegrityViolationException e)
     {
         return this.getSqlError(e, "数据时违反了完整性");
-    }
-
-    /**
-     * BadSqlGrammarException
-     */
-    @ExceptionHandler(value = {BadSqlGrammarException.class})
-    @ResponseBody
-    public ResultInfo badSqlGrammarException(BadSqlGrammarException e)
-    {
-        return this.getSqlError(e, "数据库操作失败");
     }
 
     /**
