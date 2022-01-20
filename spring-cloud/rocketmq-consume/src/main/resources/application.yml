@@ -1,0 +1,60 @@
+server:
+  port: 28082
+
+spring:
+  application:
+    name: rocketmq-consume-example
+  cloud:
+    stream:
+      bindings:
+        input1:
+          content-type: text/plain
+          destination: test-topic
+          group: test-group1
+        input2:
+          consumer:
+            concurrency: 20
+            maxAttempts: 1
+          content-type: text/plain
+          destination: test-topic
+          group: test-group2
+        input3:
+          consumer:
+            concurrency: 20
+          content-type: application/json
+          destination: test-topic
+          group: test-group3
+        input4:
+          consumer:
+            concurrency: 5
+          content-type: text/plain
+          destination: TransactionTopic
+          group: transaction-group
+        input5:
+          content-type: text/plain
+          destination: pull-topic
+          group: pull-topic-group
+
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+        bindings:
+          input1:
+            consumer:
+              orderly: true
+          input2:
+            consumer:
+              orderly: false
+              tags: tagStr
+          input3:
+            consumer:
+              tags: tagObj
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
