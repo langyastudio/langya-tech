@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: rocketmq-consume-example
+    name: rocketmq-consume
   cloud:
     stream:
       bindings:

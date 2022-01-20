@@ -2,12 +2,14 @@ server:
   port: 28081
 spring:
   application:
-    name: rocketmq-produce-example
+    name: rocketmq-produce
   cloud:
     stream:
+      # Spring Cloud Stream 配置项，对应 BindingProperties Map
       bindings:
         output1:
           content-type: application/json
+          #RocketMQ Topic
           destination: test-topic
         output2:
           content-type: application/json
@@ -16,11 +18,15 @@ spring:
           content-type: text/plain
           destination: pull-topic
 
+      # Spring Cloud Stream RocketMQ 配置项
       rocketmq:
+        # RocketMQ Binder 配置项，对应 RocketMQBinderConfigurationProperties 类
         binder:
-          name-server: 127.0.0.1:9876
+          name-server: 192.168.123.22:9876
+        # RocketMQ 自定义 Binding 配置项，对应 RocketMQBindingProperties Map
         bindings:
           output1:
+            # RocketMQ Producer 配置项，对应 RocketMQProducerProperties 类
             producer:
               group: binder-group
               sync: true
