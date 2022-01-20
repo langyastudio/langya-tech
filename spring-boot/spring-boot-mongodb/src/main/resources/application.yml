@@ -21,5 +21,8 @@ spring:
     mongodb:
       host: 192.168.123.22
       port: 27017
+      #具有用户凭据的集合的数据库的名称/账号/密码
+      #没有时，可以不指定
+      authentication-database: admin
       username: root
       password: mongo
