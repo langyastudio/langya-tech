@@ -26,3 +26,5 @@ spring:
       authentication-database: admin
       username: root
       password: mongo
+      #存储的数据库
+      database: edu

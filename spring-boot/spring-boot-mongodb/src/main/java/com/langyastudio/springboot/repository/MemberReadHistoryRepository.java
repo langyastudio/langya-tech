@@ -13,9 +13,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  */
 public interface MemberReadHistoryRepository extends MongoRepository<MemberReadHistory, String>
 {
-    MemberReadHistory findByMemberIdAndProductId(Long memberId, Long productId);
-    int deleteByMemberIdAndProductId(Long memberId,Long productId);
-
     /**
      * 根据会员id按时间倒序获取浏览记录
      *
@@ -23,4 +20,7 @@ public interface MemberReadHistoryRepository extends MongoRepository<MemberReadH
      */
     Page<MemberReadHistory> findByMemberIdOrderByCreateTimeDesc(Long memberId, Pageable pageable);
     void deleteAllByMemberId(Long memberId);
+
+    MemberReadHistory findByMemberIdAndProductId(Long memberId, Long productId);
+    int deleteByMemberIdAndProductId(Long memberId, Long productId);
 }
