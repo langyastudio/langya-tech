@@ -17,6 +17,9 @@ public class TransactionListenerImpl implements RocketMQLocalTransactionListener
     public RocketMQLocalTransactionState executeLocalTransaction(Message msg, Object arg)
     {
         Object num = msg.getHeaders().get("tx-state");
+
+        // ... local transaction process, return rollback, commit or unknown
+
         if ("1".equals(num))
         {
             log.info("executer: " + new String((byte[]) msg.getPayload()) + " unknown");
@@ -32,9 +35,12 @@ public class TransactionListenerImpl implements RocketMQLocalTransactionListener
         return RocketMQLocalTransactionState.COMMIT;
     }
 
+    // 在事务消息长事件未被提交或回滚时
+    // RocketMQ 会回查事务消息对应的生产者分组下的 Producer 获得事务消息的状态。此时，该方法就会被调用
     @Override
     public RocketMQLocalTransactionState checkLocalTransaction(Message msg)
     {
+        // ... check local transaction status and return rollback, commit or unknown
         log.info("check: " + new String((byte[]) msg.getPayload()));
         return RocketMQLocalTransactionState.COMMIT;
     }
