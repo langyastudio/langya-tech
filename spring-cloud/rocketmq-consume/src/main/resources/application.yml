@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: rocketmq-consume
+
   cloud:
     stream:
       bindings:
@@ -30,10 +31,6 @@ spring:
           content-type: text/plain
           destination: TransactionTopic
           group: transaction-group
-        input5:
-          content-type: text/plain
-          destination: pull-topic
-          group: pull-topic-group
 
       rocketmq:
         binder:

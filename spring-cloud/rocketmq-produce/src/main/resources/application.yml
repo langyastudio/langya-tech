@@ -1,42 +1,47 @@
 server:
   port: 28081
+
 spring:
   application:
     name: rocketmq-produce
+
   cloud:
     stream:
       # Spring Cloud Stream 配置项，对应 BindingProperties Map
       bindings:
-        output1:
-          content-type: application/json
+        output-common:
           #RocketMQ Topic
-          destination: test-topic
-        output2:
+          destination: topic-common-01
           content-type: application/json
-          destination: TransactionTopic
-        output3:
-          content-type: text/plain
-          destination: pull-topic
+        output-tx:
+          destination: topic-tx-01
+          content-type: application/json
 
       # Spring Cloud Stream RocketMQ 配置项
       rocketmq:
         # RocketMQ Binder 配置项，对应 RocketMQBinderConfigurationProperties 类
         binder:
           name-server: 192.168.123.22:9876
+
         # RocketMQ 自定义 Binding 配置项，对应 RocketMQBindingProperties Map
         bindings:
-          output1:
+          output-common:
             # RocketMQ Producer 配置项，对应 RocketMQProducerProperties 类
             producer:
-              group: binder-group
+              #生产者分组
+              group: group-common
+              #同步发送消息
               sync: true
-          output2:
+              #最大字节数
+              maxMessageSize: 8249344
+              #超时时间
+              sendMessageTimeout: 3000
+          tx-output:
             producer:
-              group: myTxProducerGroup
+              #group name
+              group: group-tx
+              #发送事务消息
               transactional: true
-          output3:
-            producer:
-              group: pull-binder-group
 
 logging:
   level:

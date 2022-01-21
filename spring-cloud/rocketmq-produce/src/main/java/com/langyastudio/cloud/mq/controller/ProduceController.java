@@ -1,13 +1,14 @@
 package com.langyastudio.cloud.mq.controller;
 
-import com.langyastudio.cloud.mq.Binding.MySource;
-import com.langyastudio.cloud.mq.bean.Foo;
+import com.langyastudio.cloud.mq.bean.FooMsg;
 import com.langyastudio.cloud.mq.service.SenderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.SecureRandom;
 
 /**
  * @author langyastudio
@@ -20,39 +21,22 @@ public class ProduceController
     @Autowired
     private SenderService senderService;
 
-    @Autowired
-    private MySource mySource;
-
-    @GetMapping("/send")
-    public boolean output1() throws Exception
+    @GetMapping("/send1")
+    public boolean output1(@RequestParam("msg") String msg) throws Exception
     {
-        int index = 1;
-        String msgContent = "msg-" + index;
-
-        senderService.send(msgContent);
-        senderService.sendWithTags(msgContent, "tagStr");
-        return senderService.sendObject(new Foo(index, "foo"), "tagObj");
+        int msgId = new SecureRandom().nextInt();
+        return senderService.sendObject(new FooMsg(msgId, msg), "tagObj", 0);
     }
 
     @GetMapping("/send3")
     public boolean output3() throws Exception
     {
-        // COMMIT_MESSAGE message
+        // unknown message
         senderService.sendTransactionalMsg("transactional-msg1", 1);
-        // ROLLBACK_MESSAGE message
+        // rollback message
         senderService.sendTransactionalMsg("transactional-msg2", 2);
-        // ROLLBACK_MESSAGE message
+        // commit message
         senderService.sendTransactionalMsg("transactional-msg3", 3);
-        // COMMIT_MESSAGE message
-        senderService.sendTransactionalMsg("transactional-msg4", 4);
-
-        int count = 20;
-        for (int index = 1; index <= count; index++)
-        {
-            String msgContent = "pullMsg-" + index;
-            mySource.output3()
-                    .send(MessageBuilder.withPayload(msgContent).build());
-        }
 
         return true;
     }
