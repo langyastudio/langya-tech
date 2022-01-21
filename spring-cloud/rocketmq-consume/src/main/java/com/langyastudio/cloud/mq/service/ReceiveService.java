@@ -8,28 +8,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReceiveService
 {
-    @StreamListener("input1")
-    public void receiveInput1(String receiveMsg)
+    @StreamListener("input-common-1")
+    public void receiveInput1(@Payload FooMsg receiveMsg)
     {
-        System.out.println("input1 receive: " + receiveMsg);
+        System.out.printf("[onMessage][input-common-1 线程编号:%s 消息内容：%s] %n", Thread.currentThread().getId(), receiveMsg);
     }
 
-    @StreamListener("input2")
-    public void receiveInput2(String receiveMsg)
+    @StreamListener("input-common-2")
+    public void receiveInput2(@Payload FooMsg receiveMsg)
     {
-        System.out.println("input2 receive: " + receiveMsg);
+        System.out.printf("[onMessage][input-common-2 线程编号:%s 消息内容：%s] %n", Thread.currentThread().getId(), receiveMsg);
     }
 
-    @StreamListener("input3")
-    public void receiveInput3(@Payload FooMsg foo)
+    @StreamListener("input-common-3")
+    public void receiveInput3(@Payload FooMsg receiveMsg)
     {
-        System.out.println("input3 receive: " + foo);
+        System.out.printf("[onMessage][input-common-3 线程编号:%s 消息内容：%s] %n", Thread.currentThread().getId(), receiveMsg);
     }
 
-    @StreamListener("input4")
+    @StreamListener("input-tx-1")
     public void receiveTransactionalMsg(String transactionMsg)
     {
-        System.out.println("input4 receive transaction msg: " + transactionMsg);
+        System.out.printf("[onMessage][input-tx-3 线程编号:%s 消息内容：%s] %n", Thread.currentThread().getId(), transactionMsg);
     }
 
 }

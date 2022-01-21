@@ -1,12 +1,12 @@
 package com.langyastudio.cloud.mq;
 
+import com.langyastudio.cloud.mq.binding.InputBinding;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.xml.sax.InputSource;
 
 @SpringBootApplication
-@EnableBinding({InputSource.class})
+@EnableBinding({InputBinding.class})
 public class RocketMQConsumerApplication
 {
     public static void main(String[] args)

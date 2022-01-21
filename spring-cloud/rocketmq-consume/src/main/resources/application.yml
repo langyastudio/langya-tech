@@ -1,51 +1,65 @@
 server:
-  port: 28082
+  # 随机端口，方便启动多个消费者
+  port: ${random.int[10000,19999]}
 
 spring:
   application:
     name: rocketmq-consume
 
   cloud:
+    # Spring Cloud Stream 配置项，对应 BindingServiceProperties 类
     stream:
+      # Binding 配置项，对应 BindingProperties Map
       bindings:
-        input1:
-          content-type: text/plain
-          destination: test-topic
-          group: test-group1
-        input2:
+        input-common-1:
+          # 目的地。这里使用 RocketMQ Topic
+          destination: topic-common-01
+          content-type: application/json
+          ## 消费者分组, 命名规则：group+topic名+xx
+          group: group-common-1
+        input-common-2:
+          destination: topic-common-01
+          content-type: application/json
           consumer:
             concurrency: 20
             maxAttempts: 1
-          content-type: text/plain
-          destination: test-topic
-          group: test-group2
-        input3:
+          group: group-common-2
+        input-common-3:
+          destination: topic-common-01
+          content-type: application/json
           consumer:
             concurrency: 20
+          group: group-common-3
+        input-tx-1:
+          destination: topic-tx-01
           content-type: application/json
-          destination: test-topic
-          group: test-group3
-        input4:
           consumer:
             concurrency: 5
-          content-type: text/plain
-          destination: TransactionTopic
-          group: transaction-group
+          group: group-tx-1
 
+      # Spring Cloud Stream RocketMQ 配置项
       rocketmq:
         binder:
-          name-server: 127.0.0.1:9876
+          name-server: 192.168.123.22:9876
+
         bindings:
-          input1:
+          input-common-1:
+            # RocketMQ Consumer 配置项
             consumer:
+              # 是否开启消费，默认为 true
+              enabled: true
+              # 是否使用广播消费，默认为 false 使用集群消费，如果要使用广播消费值设成true
+              broadcasting: false
               orderly: true
-          input2:
+          input-common-2:
             consumer:
               orderly: false
-              tags: tagStr
-          input3:
+          input-common-3:
             consumer:
               tags: tagObj
+          input-tx-1:
+            consumer:
+              orderly: false
 
 management:
   endpoint:

@@ -7,7 +7,7 @@ import org.springframework.messaging.MessageChannel;
  * @author langyastudio
  * @date 2022年01月20日
  */
-public interface OutputSource
+public interface OutputBinding
 {
     @Output("output-common")
     MessageChannel sendCommon();

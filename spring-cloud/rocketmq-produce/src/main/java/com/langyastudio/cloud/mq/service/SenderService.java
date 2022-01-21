@@ -1,6 +1,6 @@
 package com.langyastudio.cloud.mq.service;
 
-import com.langyastudio.cloud.mq.binding.OutputSource;
+import com.langyastudio.cloud.mq.binding.OutputBinding;
 import org.apache.rocketmq.common.message.MessageConst;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.util.MimeTypeUtils;
 public class SenderService
 {
     @Autowired
-    private OutputSource source;
+    private OutputBinding source;
 
     /**
      * 发送消息
