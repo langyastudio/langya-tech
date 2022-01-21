@@ -12,6 +12,8 @@ spring:
       # Binding 配置项，对应 BindingProperties Map
       bindings:
         input-common-1:
+          #重试次数
+          max-attempts: 1
           # 目的地。这里使用 RocketMQ Topic
           destination: topic-common-01
           content-type: application/json
@@ -51,6 +53,8 @@ spring:
               # 是否使用广播消费，默认为 false 使用集群消费，如果要使用广播消费值设成true
               broadcasting: false
               orderly: true
+              # 异步消费消息模式下消费失败重试策略，默认为 0
+              delay-level-when-next-consume: 0
           input-common-2:
             consumer:
               orderly: false
