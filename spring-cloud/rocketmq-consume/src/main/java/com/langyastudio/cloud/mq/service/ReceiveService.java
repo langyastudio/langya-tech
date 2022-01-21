@@ -41,7 +41,7 @@ public class ReceiveService
 
     //------------------------------------------------ error ------------------------------------------------------
     //<destination>.<group>.errors
-    //指定错误
+    //局部错误
     @ServiceActivator(inputChannel = "topic-common-01.group-common-3.errors")
     public void handleError(ErrorMessage errorMessage)
     {

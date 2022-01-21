@@ -13,6 +13,12 @@ spring:
           #RocketMQ Topic
           destination: topic-common-01
           content-type: application/json
+
+          # Producer 配置项，对应 ProducerProperties 类
+          producer:
+            # 分区 key 表达式。该表达式基于 Spring EL，从消息中获得分区 key
+            partition-key-expression: payload['id']
+
         output-tx:
           destination: topic-tx-01
           content-type: application/json

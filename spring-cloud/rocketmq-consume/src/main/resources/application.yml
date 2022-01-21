@@ -48,11 +48,12 @@ spring:
           input-common-1:
             # RocketMQ Consumer 配置项
             consumer:
+              # 顺序接收消息
+              orderly: true
               # 是否开启消费，默认为 true
               enabled: true
               # 是否使用广播消费，默认为 false 使用集群消费，如果要使用广播消费值设成true
               broadcasting: false
-              orderly: true
               # 异步消费消息模式下消费失败重试策略，默认为 0
               delay-level-when-next-consume: 0
           input-common-2:
@@ -60,6 +61,7 @@ spring:
               orderly: false
           input-common-3:
             consumer:
+              # 基于 Tag 订阅，多个 Tag 使用 || 分隔，默认为空
               tags: tagObj
           input-tx-1:
             consumer:
