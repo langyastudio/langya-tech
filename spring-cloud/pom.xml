@@ -37,6 +37,7 @@
 
         <!--data-->
         <nimbus-jose-jwt.version>9.15.2</nimbus-jose-jwt.version>
+        <druid-spring-boot-starter.version>1.2.8</druid-spring-boot-starter.version>
 
         <!--encode-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
