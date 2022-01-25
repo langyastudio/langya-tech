@@ -1,0 +1,64 @@
+server:
+  port: 18081
+
+spring:
+  main:
+    allow-circular-references: true
+
+  application:
+    name: business-service
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.123.22:8848
+        username: naocs
+        password: nacos
+
+    alibaba:
+      seata:
+        #自定义事务组名称需要与 seata-server 中的对应
+        tx-service-group: business-service
+
+seata:
+  enabled: true
+  service:
+    disable-global-transaction: false
+    grouplist:
+      default: 192.168.123.22:8091
+    vgroup-mapping:
+      #事务分组名=集群名称
+      #集群名需要与Seata-server注册到Nacos的cluster保持一致
+      business-service: default
+
+  # if use registry center
+  registry:
+    nacos:
+      cluster: default
+      server-addr: 192.168.123.22
+      username: nacos
+      password: nacos
+    type: nacos
+
+  # if use config center
+  #config:
+  #  apollo:
+  #    apollo-meta: http://192.168.1.204:8801
+  #    app-id: seata-server
+  #  type: apollo
+
+# The following configuration can be omitted.
+#feign.sentinel.enabled=true
+feign:
+  client:
+    config:
+      default:
+        #服务请求连接超时时间（毫秒）
+        connectTimeout: 10000
+        #服务请求处理超时时间（毫秒）
+        readTimeout: 10000
+
+logging:
+  level:
+    io:
+      seata: debug

@@ -1,0 +1,56 @@
+server:
+  port: 18083
+
+spring:
+  application:
+    name: order-service
+
+  datasource:
+    name: '"orderDataSource"'
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.123.22:3306/seat-order?useSSL=false&serverTimezone=UTC
+    username: test
+    password: testMysql
+    druid:
+      initial-size: 2
+      max-active: 20
+      min-idle: 2
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.123.22:8848
+        username: naocs
+        password: nacos
+
+    alibaba:
+      seata:
+        tx-service-group: business-service
+
+seata:
+  enabled: true
+  service:
+    disable-global-transaction: false
+    grouplist:
+      default: 192.168.123.22:8091
+    vgroup-mapping:
+      #事务分组名=集群名称
+      #集群名需要与Seata-server注册到Nacos的cluster保持一致
+      business-service: default
+
+  # if use registry center
+  registry:
+    nacos:
+      cluster: default
+      server-addr: 192.168.123.22
+      username: nacos
+      password: nacos
+    type: nacos
+
+  # if use config center
+  #config:
+  #  apollo:
+  #    apollo-meta: http://192.168.1.204:8801
+  #    app-id: seata-server
+  #  type: apollo

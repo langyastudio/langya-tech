@@ -1,68 +1,56 @@
-/*
- * Copyright 2013-2018 the original author or authors.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.langyastudio.cloud.seata;
 
-import java.util.Random;
-
+import java.security.SecureRandom;
 import io.seata.core.context.RootContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.extern.log4j.Log4j2;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author xiaojing
- */
+@Log4j2
 @RestController
-public class AccountController {
+public class AccountController
+{
+    private static final String SUCCESS = "SUCCESS";
+    private static final String FAIL = "FAIL";
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(AccountController.class);
+    private final JdbcTemplate jdbcTemplate;
+    private final SecureRandom random;
 
-	private static final String SUCCESS = "SUCCESS";
+    public AccountController(JdbcTemplate jdbcTemplate)
+    {
+        this.jdbcTemplate = jdbcTemplate;
+        this.random = new SecureRandom();
+    }
 
-	private static final String FAIL = "FAIL";
+    /**
+     * 更新用户的 money
+     *
+     * @param userId 用户Id号
+     * @param money  减少的金额
+     * @return
+     */
+    @PostMapping(value = "/account", produces = "application/json")
+    public String account(String userId, int money)
+    {
+        log.info("Account Service ... xid: " + RootContext.getXID());
 
-	private final JdbcTemplate jdbcTemplate;
+        if (random.nextBoolean())
+        {
+            throw new RuntimeException("this is a mock Exception");
+        }
 
-	private Random random;
+        int result = jdbcTemplate.update(
+                "update account_tbl set money = money - ? where user_id = ?",
+                new Object[]{money, userId});
 
-	public AccountController(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-		this.random = new Random();
-	}
+        log.info("Account Service End ... ");
+        if (result == 1)
+        {
+            return SUCCESS;
+        }
 
-	@PostMapping(value = "/account", produces = "application/json")
-	public String account(String userId, int money) {
-		LOGGER.info("Account Service ... xid: " + RootContext.getXID());
-
-		if (random.nextBoolean()) {
-			throw new RuntimeException("this is a mock Exception");
-		}
-
-		int result = jdbcTemplate.update(
-				"update account_tbl set money = money - ? where user_id = ?",
-				new Object[] { money, userId });
-		LOGGER.info("Account Service End ... ");
-		if (result == 1) {
-			return SUCCESS;
-		}
-		return FAIL;
-	}
+        return FAIL;
+    }
 
 }
