@@ -29,6 +29,7 @@ spring:
 
     alibaba:
       seata:
+        #自定义事务组名称需要与 seata-server 中的对应
         tx-service-group: business-service
 
 seata:

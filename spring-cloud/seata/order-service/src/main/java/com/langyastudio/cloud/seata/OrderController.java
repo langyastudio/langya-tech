@@ -61,7 +61,7 @@ public class OrderController
 		//抛出异常，用于测试整个事务流程
         if (random.nextBoolean())
         {
-            throw new RuntimeException("this is a mock Exception");
+            //throw new RuntimeException("this is a mock Exception");
         }
 
         log.info("Order Service End ... Created " + order);

@@ -8,6 +8,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -29,4 +30,21 @@ public class DatabaseConfiguration
     {
 		return new JdbcTemplate(dataSource);
     }
+
+    /*@Value("${mybatis.mapperLocations}")
+    private String mapperLocations;
+    @Bean
+    public DataSourceProxy dataSourceProxy(DataSource dataSource) {
+        return new DataSourceProxy(dataSource);
+    }
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactoryBean(DataSourceProxy dataSourceProxy) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSourceProxy);
+        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver()
+                                                         .getResources(mapperLocations));
+        sqlSessionFactoryBean.setTransactionFactory(new SpringManagedTransactionFactory());
+        return sqlSessionFactoryBean.getObject();
+    }*/
 }
