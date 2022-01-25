@@ -4,6 +4,7 @@ import java.security.SecureRandom;
 import io.seata.core.context.RootContext;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +31,7 @@ public class AccountController
      * @param money  减少的金额
      * @return
      */
-    @PostMapping(value = "/account", produces = "application/json")
+    @GetMapping(value = "/account", produces = "application/json")
     public String account(String userId, int money)
     {
         log.info("Account Service ... xid: " + RootContext.getXID());
