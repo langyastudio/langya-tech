@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>storage-service</artifactId>
+    <artifactId>seata-storage-service</artifactId>
     <name>Spring Cloud Starter Alibaba Seata Example - Storage Service</name>
     <packaging>jar</packaging>
 
