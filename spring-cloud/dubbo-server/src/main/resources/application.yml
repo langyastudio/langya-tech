@@ -1,0 +1,39 @@
+server:
+  port: 19002
+
+spring:
+  application:
+    name: dubbo-server
+
+  main:
+    allow-circular-references: true
+
+    # Spring Boot 2.1 需要设定
+    # Spring Boot 默认调整了 Bean 定义覆盖行为
+    allow-bean-definition-overriding: true
+
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: 192.168.123.22:8848
+
+dubbo:
+  scan:
+    # dubbo 服务扫描基准包
+    base-packages: com.langyastudio.cloud.dubbo.service
+
+  protocol:
+    # dubbo 协议名称
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: 20880
+
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    # 也就是我们的nacos，可以直接使用nacos地址替换localhost
+    address: spring-cloud://192.168.123.22:8848
+
+  cloud:
+    subscribed-services: ''
