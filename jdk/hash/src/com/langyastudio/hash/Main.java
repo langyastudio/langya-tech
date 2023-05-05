@@ -1,4 +1,4 @@
-/**
+package com.langyastudio.hash; /**
  * {类简要说明}
  * <p>
  * {类详细说明}

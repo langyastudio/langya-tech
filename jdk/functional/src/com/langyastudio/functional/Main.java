@@ -36,7 +36,7 @@ public class Main
                 .forEach(System.out::println);
 
         //基于Collect创建
-        List.of("Apple", "Orange", "Banana")
+        Arrays.asList("Apple", "Orange", "Banana")
                 .stream()
                 .map(String::trim)
                 .map(String::toLowerCase)
