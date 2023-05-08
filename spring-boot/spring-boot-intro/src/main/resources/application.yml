@@ -26,7 +26,7 @@ langyastudio:
 
 erp:
   db:
-    compatibility: false
+    compatibility: true
     schema: erp_ys_dev_0001
     #表名长的放前面，避免字符串匹配的时候先匹配替换子集
     replaceTables:
@@ -52,16 +52,16 @@ spring:
     active: dev
 
   datasource:
-    url: jdbc:kingbase8://192.168.248.206:54321/erpdata_dev_0001?currentSchema=erp_ys_dev_0001
-    username: erp_ys_dev_0001
-    password: king##88CCDD
-    driver-class-name: com.kingbase8.Driver
-    #url: jdbc:mysql://192.168.123.22:3306/edu_account
-    #username: root
-    #password: Hacfin_Mysql8
-    #driver-class-name: com.mysql.jdbc.driver-class-name
+    #url: jdbc:kingbase8://192.168.248.206:54321/erpdata_dev_0001?currentSchema=erp_ys_dev_0001
+    #username: erp_ys_dev_0001
+    #password: king##88CCDD
+    #driver-class-name: com.kingbase8.Driver
+    url: jdbc:mysql://192.168.123.22:3306/edu_account
+    username: root
+    password: Hacfin_Mysql8
+    driver-class-name: com.mysql.jdbc.driver-class-name
     druid:
-      driver-class-name: com.kingbase8.Driver
+      #driver-class-name: com.kingbase8.Driver
       initial-size: 10
       max-active: 20
       min-idle: 1
@@ -79,7 +79,7 @@ spring:
       #filters: wall
 
   redis:
-    host: langyastudio.tpddns.cn
+    host: 192.168.123.22
     port: 6379
     password: Gl_Redis8
     timeout: 6000ms
