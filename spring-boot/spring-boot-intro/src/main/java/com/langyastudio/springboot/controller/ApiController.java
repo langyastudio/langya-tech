@@ -6,6 +6,7 @@ import com.langyastudio.springboot.common.data.EC;
 import com.langyastudio.springboot.common.data.validator.UpdateV;
 import com.langyastudio.springboot.common.exception.MyException;
 import com.langyastudio.springboot.mapper.UmsUserMapper;
+import com.langyastudio.springboot.model.SysConfigModel;
 import com.langyastudio.springboot.model.UmsUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -76,6 +78,8 @@ public class ApiController
     @GetMapping("exception")
     public void exception()
     {
+        List<SysConfigModel> sysConfigModels =  umsUserMapper.mapperSysConfigListByKey("filterNullStr");
+        int rtn = umsUserMapper.mapperSysConfigListByKey2("filterNullStr2");
         throw new MyException(EC.ERROR);
     }
 }

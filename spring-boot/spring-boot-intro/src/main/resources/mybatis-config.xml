@@ -46,7 +46,5 @@
         <setting name="logPrefix" value="batis-log-"/>
         <!-- 指定 MyBatis 所用日志的具体实现，未指定时将自动查找-->
         <setting name="logImpl" value="LOG4J2"/>
-
     </settings>
-
 </configuration>

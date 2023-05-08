@@ -6,3 +6,4 @@ spring-cloud/log/
 spring-cloud/logs/
 spring-boot/spring-boot-mongodb/logs/
 out/
+logs/

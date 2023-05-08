@@ -1,6 +1,5 @@
 package com.langyastudio.springboot.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.Mapper;
 import com.langyastudio.springboot.model.UmsUserAuth;
 
 public interface UmsUserAuthMapper

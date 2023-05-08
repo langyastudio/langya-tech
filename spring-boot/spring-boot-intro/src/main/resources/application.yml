@@ -24,6 +24,14 @@ langyastudio:
       # 允许的文件类型:
       allow-types: jpg, png, gif
 
+erp:
+  db:
+    compatibility: true
+    schema: erp_ys_dev_0001
+    #表名长的放前面，避免字符串匹配的时候先匹配替换子集
+    replaceTables:
+      - SYS_CONFIG
+
 server:
   # 服务端口
   port: ${APP_PORT:8080}
@@ -47,7 +55,7 @@ spring:
     url: jdbc:mysql://192.168.123.22:3306/edu_account
     username: root
     password: Hacfin_Mysql8
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.driver-class-name
     druid:
       initial-size: 10
       max-active: 20
@@ -63,12 +71,12 @@ spring:
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
       #max-evictable-idle-time-millis:
-      filters: wall
+      #filters: wall
 
   redis:
-    host: 192.168.123.22
+    host: langyastudio.tpddns.cn
     port: 6379
-    password: Hacfin_Redis8
+    password: Gl_Redis8
     timeout: 6000ms
     lettuce:
       pool:
@@ -105,15 +113,16 @@ mybatis:
   mapper-locations:
     classpath*:mapper/*.xml
 
-  configuration:
-    auto-mapping-behavior: partial
+  #configuration:
+    #auto-mapping-behavior: partial
     # 开启驼峰命名
-    map-underscore-to-camel-case: true
+    #map-underscore-to-camel-case: true
 
 mybatis-plus:
   global-config:
     db-config:
       id-type: auto
+      schema: erp_ys_dev_0001
       # 表名前缀
       table-prefix:
 

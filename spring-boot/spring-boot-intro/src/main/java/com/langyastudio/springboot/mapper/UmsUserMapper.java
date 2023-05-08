@@ -1,10 +1,14 @@
 package com.langyastudio.springboot.mapper;
 
+import com.langyastudio.springboot.model.SysConfigModel;
 import com.langyastudio.springboot.model.UmsUser;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.Caching;
+
+import java.util.List;
 
 @CacheConfig(cacheNames = "db" + ":UmsUserMapper")
 public interface UmsUserMapper
@@ -46,6 +50,14 @@ public interface UmsUserMapper
     //只有非null数据才会缓存
     @Cacheable(key = "#userName", unless = "#result == null")
     UmsUser selectByPrimaryKey(String userName);
+
+    List<SysConfigModel> mapperSysConfigListByKey(
+            @Param("key") String key
+    );
+
+    int mapperSysConfigListByKey2(
+            @Param("key") String key
+    );
 
     /**
      * 信息 - 含有软删除数据

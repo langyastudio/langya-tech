@@ -21,6 +21,21 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
     </resultMap>
 
+    <select id="mapperSysConfigListByKey" resultType="com.langyastudio.springboot.model.SysConfigModel">
+        SELECT
+        F_VALUE
+        FROM
+        SYS_CONFIG
+        WHERE
+        F_KEY = '${key}'
+    </select>
+
+    <insert id="mapperSysConfigListByKey2">
+        insert into
+        SYS_CONFIG
+        values ('filterNullStr3', 'is not null', '空值过滤sql2')
+    </insert>
+
     <sql id="Base_Column_List">
         <!--@mbg.generated-->
         id, user_name, nick_name, full_name, sex, avator, pcd_id, company, birthday, description,

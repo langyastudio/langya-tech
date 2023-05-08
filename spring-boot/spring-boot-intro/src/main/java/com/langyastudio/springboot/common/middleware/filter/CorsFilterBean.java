@@ -10,7 +10,10 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
 
 /**
  * Cors 跨域
@@ -25,7 +28,7 @@ public class CorsFilterBean extends FilterRegistrationBean<Filter>
     public void init()
     {
         setFilter(new CorsFilter());
-        setUrlPatterns(List.of("/admin/*", "/portal/*"));
+        setUrlPatterns(Arrays.asList("/admin/*", "/portal/*"));
     }
 
     class CorsFilter implements Filter
