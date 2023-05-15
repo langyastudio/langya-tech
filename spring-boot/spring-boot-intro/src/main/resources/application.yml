@@ -79,7 +79,7 @@ spring:
       #filters: wall
 
   redis:
-    host: 192.168.123.22
+    host: langyastudio.tpddns.cn
     port: 6379
     password: Gl_Redis8
     timeout: 6000ms
