@@ -2,10 +2,15 @@ package com.langyastudio.cloud.config;
 
 import com.langyastudio.cloud.exception.OpenFeignErrorDecoder;
 import com.langyastudio.cloud.service.impl.EchoServiceImpl;
-import feign.Logger;
-import feign.RequestInterceptor;
-import feign.Retryer;
+import feign.*;
 import feign.codec.ErrorDecoder;
+import feign.okhttp.OkHttpClient;
+import okhttp3.ConnectionPool;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.cloud.commons.httpclient.OkHttpClientConnectionPoolFactory;
+import org.springframework.cloud.commons.httpclient.OkHttpClientFactory;
+import org.springframework.cloud.openfeign.support.FeignHttpClientProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -62,11 +67,15 @@ public class FeignConfig
                 Map<String, String> headers = getRequestHeaders(request);
 
                 // 传递所有请求头,防止部分丢失
-                //此处也可以只传递认证的header
-                requestTemplate.header("Authorization", request.getHeader("Authorization"));
                 for (Map.Entry<String, String> entry : headers.entrySet())
                 {
                     requestTemplate.header(entry.getKey(), entry.getValue());
+                }
+
+                //此处也可以只传递认证的header
+                String authHeader = request.getHeader("Authorization");
+                if(null != authHeader){
+                    requestTemplate.header("Authorization", authHeader);
                 }
             }
         };
