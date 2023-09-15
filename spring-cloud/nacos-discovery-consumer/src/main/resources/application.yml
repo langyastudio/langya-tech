@@ -31,12 +31,16 @@ logging:
 #feign client config
 #https://cloud.spring.io/spring-cloud-openfeign/reference/html/appendix.html
 feign:
+  client:
+    config:
+      default:
+        connectTimeout: 30000
+        readTimeout: 30000
   okhttp:
     enabled: true
   httpclient:
-    connectionTimeout: 10000
-    okhttp:
-      readTimeout: 10000
+    # 关闭 ApacheHttpClient
+    enabled: false
   compression:
     request:
       #是否对请求进行GZIP压缩

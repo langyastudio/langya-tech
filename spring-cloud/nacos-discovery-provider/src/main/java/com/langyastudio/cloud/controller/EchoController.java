@@ -47,6 +47,13 @@ public class EchoController
         return "ok";
     }
 
+    @GetMapping("/echo-timeout/{string}")
+    public String echoTimeout(@PathVariable String string) throws InterruptedException {
+        Thread.sleep(10000L);
+        log.info(string);
+        return "hello Nacos Discovery " + string;
+    }
+
     @GetMapping("/echo/{string}")
     public String echo(@PathVariable String string)
     {

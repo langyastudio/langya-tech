@@ -33,6 +33,11 @@ public class EchoServiceImpl implements EchoService
     }
 
     @Override
+    public String echoTimeout(String str) {
+        return null;
+    }
+
+    @Override
     public String divide(@RequestParam Integer a, @RequestParam Integer b)
     {
         return "调用失败，服务被降级";

@@ -77,6 +77,12 @@ public class TestController
         return echoService.echo(str);
     }
 
+    @GetMapping("/echo-feign-timeout/{str}")
+    public String feignTimeout(@PathVariable String str)
+    {
+        return echoService.echoTimeout(str);
+    }
+
 	//------------------------------------------------------------------------------------------------------------------
 	//  discoveryClient
 	//------------------------------------------------------------------------------------------------------------------

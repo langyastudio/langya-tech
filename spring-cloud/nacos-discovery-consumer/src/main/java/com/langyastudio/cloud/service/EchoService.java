@@ -26,6 +26,9 @@ public interface EchoService
     @GetMapping("/echo/{str}")
     String echo(@PathVariable("str") String str);
 
+    @GetMapping("/echo-timeout/{str}")
+    String echoTimeout(@PathVariable("str") String str);
+
     @GetMapping("/divide")
     String divide(@RequestParam("a") Integer a, @RequestParam("b") Integer b);
 }
