@@ -58,8 +58,8 @@ spring:
     #driver-class-name: com.kingbase8.Driver
     url: jdbc:mysql://192.168.123.22:3306/edu_account
     username: root
-    password: Hacfin_Mysql8
-    driver-class-name: com.mysql.jdbc.driver-class-name
+    password: Gl_MySQL8
+    driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       #driver-class-name: com.kingbase8.Driver
       initial-size: 10
