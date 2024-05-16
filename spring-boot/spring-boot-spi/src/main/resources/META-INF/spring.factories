@@ -1,0 +1,2 @@
+com.langyastudio.springboot.IAnimalSay=com.langyastudio.springboot.CatSay,\
+  com.langyastudio.springboot.DogSay
