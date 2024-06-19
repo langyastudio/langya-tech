@@ -1,0 +1,18 @@
+server:
+  # 服务端口
+  port: ${APP_PORT:8080}
+  # 错误页，指定发生错误时，跳转的URL
+  error:
+    path: /error
+  # 该服务绑定IP地址，启动服务器时如本机不是该IP地址则抛出异常启动失败，只有特殊需求的情况下才配置
+  # address=192.168.0.6
+  servlet:
+    # spring 2.x 中文乱码
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+
+spring:
+  profiles:
+    active: dev
