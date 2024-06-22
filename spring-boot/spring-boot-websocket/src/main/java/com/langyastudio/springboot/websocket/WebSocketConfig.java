@@ -23,7 +23,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     private MyInterceptor myInterceptor;
 
     /**
-     * 第二个参数 websocket 是你暴露出的 ws 路径
+     * 第二个参数 websocket 是你暴露出的 ws 路径 -- http://localhost:8080/websocket
      * addInterceptors 添加握手过滤器
      * setAllowedOrigins("*") 这个是关闭跨域校验
      * @param registry

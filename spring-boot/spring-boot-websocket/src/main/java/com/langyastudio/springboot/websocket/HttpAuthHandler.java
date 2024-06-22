@@ -55,7 +55,12 @@ public class HttpAuthHandler extends TextWebSocketHandler {
         // 获得客户端传来的消息
         String payload = message.getPayload();
         Object token   = session.getAttributes().get("token");
-        System.out.println("server 接收到 " + token + " 发送的 " + payload);
+
+        log.info("server 接收到 " + token + " 发送的 " + payload);
+        if ("ping".equals(payload)) {
+            session.sendMessage(new TextMessage("pong" + LocalDateTime.now().toString()));
+            return;
+        }
 
         session.sendMessage(new TextMessage("server 发送给 " + token + " 消息 " + payload + " " + LocalDateTime.now().toString()));
     }
@@ -64,7 +69,7 @@ public class HttpAuthHandler extends TextWebSocketHandler {
     public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
         if ((exception instanceof EOFException) && exception.getCause() == null) {
             log.warn("客户端异常退出：{}", session.getId());
-            log.error("客户端异常退出", exception);
+            log.warn("客户端异常退出", exception);
         } else {
             log.error("socket发生异常：{}", session.getId());
             log.error("异常信息", exception);
