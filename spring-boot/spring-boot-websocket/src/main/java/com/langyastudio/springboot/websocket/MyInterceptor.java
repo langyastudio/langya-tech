@@ -2,16 +2,11 @@ package com.langyastudio.springboot.websocket;
 
 import cn.hutool.core.util.StrUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
-
-import java.security.Principal;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 /**

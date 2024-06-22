@@ -32,7 +32,7 @@ public class HttpAuthHandler extends TextWebSocketHandler {
         Object token = session.getAttributes().get("token");
         if (token != null) {
             // 用户连接成功，放入在线用户缓存
-            WsSessionManager.add(token.toString(), session);
+            WsSessionManager.put(token.toString(), new WebSocket(session, System.currentTimeMillis()));
         } else {
             throw new RuntimeException("用户登录已经失效!");
         }
@@ -56,13 +56,18 @@ public class HttpAuthHandler extends TextWebSocketHandler {
         String payload = message.getPayload();
         Object token   = session.getAttributes().get("token");
 
+        //更新心跳时间
+        WebSocket webSocket = WsSessionManager.get(token.toString());
+        webSocket.setLastHeart(System.currentTimeMillis());
+        WsSessionManager.put(token.toString(), webSocket);
+
         log.info("server 接收到 " + token + " 发送的 " + payload);
         if ("ping".equals(payload)) {
-            session.sendMessage(new TextMessage("pong"));
+            WsSessionManager.sendMessage(token.toString(), "pong");
             return;
         }
 
-        session.sendMessage(new TextMessage("server 发送给 " + token + " 消息 " + payload + " " + LocalDateTime.now().toString()));
+        WsSessionManager.sendMessage(token.toString(), ("server 发送给 " + token + " 消息 " + payload + " " + LocalDateTime.now().toString()));
     }
 
     @Override
