@@ -58,7 +58,7 @@ public class HttpAuthHandler extends TextWebSocketHandler {
 
         log.info("server 接收到 " + token + " 发送的 " + payload);
         if ("ping".equals(payload)) {
-            session.sendMessage(new TextMessage("pong" + LocalDateTime.now().toString()));
+            session.sendMessage(new TextMessage("pong"));
             return;
         }
 
